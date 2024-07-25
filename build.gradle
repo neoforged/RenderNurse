@@ -1,14 +1,41 @@
 plugins {
     id 'java'
+    alias(libs.plugins.nexus)
+    alias(libs.plugins.gradleutils)
+    id 'java-library'
+    id 'groovy'
+    id 'signing'
+    alias(libs.plugins.licenser)
+    id 'maven-publish'
 }
 
 group = 'net.neoforged'
-version = '1.0-SNAPSHOT'
+gradleutils {
+    version {
+        branches.suffixBranch()
+    }
+    setupCentralPublishing()
+    setupSigning(signAllPublications: true)
+}
+version = gradleutils.version
+
+changelog {
+    from '0.0'
+    disableAutomaticPublicationRegistration()
+}
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+    withSourcesJar()
+    withJavadocJar()
+}
+
+license {
+    header = rootProject.file('LICENSE-header')
+    include '**/net/neoforged/**/*.java'
+    include '**/net/neoforged/**/*.groovy'
 }
 
 repositories {
@@ -29,4 +56,53 @@ jar {
 
 tasks.withType(JavaCompile).configureEach {
     options.compilerArgs.add("--enable-preview")
+}
+
+tasks.withType(Javadoc).configureEach {
+    options {
+        addBooleanOption('-enable-preview', true)
+        addStringOption('-source', '21')
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            pom {
+                name = "${project.name}"
+                description = 'Instrumentation agent for easily starting RenderDoc'
+                url = 'https://github.com/neoforged/Doctor'
+                scm {
+                    url = 'https://github.com/neoforged/Doctor'
+                    connection = 'scm:git:git://github.com/neoforged/Doctor.git'
+                    developerConnection = 'scm:git:git@github.com:neoforged/Doctor.git'
+                }
+                issueManagement {
+                    system = 'github'
+                    url = 'https://github.com/neoforged/Doctor/issues'
+                }
+
+                licenses {
+                    license {
+                        name = 'LGPLv2.1'
+                        url = 'https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = 'neoforged'
+                        name = 'NeoForged'
+                        email = 'contact@neoforged.net'
+                        url = 'https://github.com/NeoForged/'
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven gradleutils.publishingMaven
+    }
 }
