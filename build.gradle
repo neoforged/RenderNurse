@@ -1,0 +1,32 @@
+plugins {
+    id 'java'
+}
+
+group = 'net.neoforged'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}
+
+jar {
+    manifest {
+        attributes(
+                'Premain-Class': 'net.neoforged.doctor.RenderDocLaunchAgent',
+                'Agent-Class': 'net.neoforged.doctor.RenderDocLaunchAgent'
+        )
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs.add("--enable-preview")
+}
