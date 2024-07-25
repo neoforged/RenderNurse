@@ -9,7 +9,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'net.neoforged'
+group = 'net.neoforged.doctor'
 gradleutils {
     version {
         branches.suffixBranch()
