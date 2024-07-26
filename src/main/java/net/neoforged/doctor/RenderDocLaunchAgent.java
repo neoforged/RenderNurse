@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) NeoForge Development and contributors
+ * SPDX-License-Identifier: LGPL-2.1-only
+ */
+
 package net.neoforged.doctor;
 
 import net.renderdoc.api.RENDERDOC_API_1_6_0;
@@ -34,7 +39,7 @@ public class RenderDocLaunchAgent {
 
     @SuppressWarnings("CallToPrintStackTrace") //No logger available!
     private static void loadRenderDocLibrary() {
-        final var librarySystemProp = System.getProperty("neoforge.doctor.renderdoc.library", "<NOT_SET>");
+        final var librarySystemProp = System.getProperty("neoforge.rendernurse.renderdoc.library", "<NOT_SET>");
         final var libraryPath = Path.of(librarySystemProp).toAbsolutePath();
 
         if (!Files.exists(libraryPath)) {
