@@ -72,7 +72,7 @@ publishing {
 
             pom {
                 name = "${project.name}"
-                description = 'Instrumentation agent for easily starting RenderDoc in a Java Application'
+                description = 'Instrumentation agent for easily starting RenderDoc in a Java Application particularly minecraft'
                 url = 'https://github.com/neoforged/Doctor'
                 scm {
                     url = 'https://github.com/neoforged/Doctor'
