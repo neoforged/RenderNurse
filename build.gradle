@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    alias(libs.plugins.nexus)
+    //alias(libs.plugins.nexus)
     alias(libs.plugins.gradleutils)
     id 'java-library'
     id 'groovy'
@@ -14,7 +14,7 @@ gradleutils {
     version {
         branches.suffixBranch()
     }
-    setupCentralPublishing()
+    //setupCentralPublishing()
     setupSigning(signAllPublications: true)
 }
 version = gradleutils.version
