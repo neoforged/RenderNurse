@@ -9,7 +9,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'net.neoforged.rendernurse'
+group = 'net.neoforged'
 gradleutils {
     version {
         branches.suffixBranch()

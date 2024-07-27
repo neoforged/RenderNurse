@@ -1,4 +1,4 @@
-rootProject.name = 'RenderNurse'
+rootProject.name = 'render-nurse'
 
 dependencyResolutionManagement {
     versionCatalogs {
