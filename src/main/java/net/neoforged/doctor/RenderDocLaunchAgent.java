@@ -13,10 +13,18 @@ import java.lang.foreign.*;
 import java.lang.instrument.Instrumentation;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class RenderDocLaunchAgent {
 
+    private static AtomicBoolean hasLoaded = new AtomicBoolean();
+
     public static void load() {
+        //Avoid loading multiple times if we were specified multiple times by accident
+        if (hasLoaded.compareAndExchange(false, true)) {
+            return;
+        }
+
         System.out.printf("Loading RenderDoc...%n");
 
         //Check if we are on mac:
