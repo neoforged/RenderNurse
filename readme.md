@@ -4,7 +4,7 @@
 ### Usage
 Add the published artifact:
 ```
-net.neoforged:RenderNurse:0.0.4
+implementation "net.neoforged:render-nurse:0.0.14"
 ```
 or any other version you want to use to your runtime classpath.
 It has no compile dependency and no API other than the system properties that should be set for startup.
