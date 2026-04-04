@@ -1,2 +1,5 @@
 # These are explicitly windows files and should use CRLF
 *.bat                       text eol=crlf
+
+# These are generated using jextract from renderdoc_app.h
+src/main/java/net/renderdoc/**  text linguist-generated
