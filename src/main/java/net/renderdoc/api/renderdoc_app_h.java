@@ -2,2301 +2,2531 @@
 
 package net.renderdoc.api;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
-import static java.lang.foreign.ValueLayout.*;
-public class renderdoc_app_h  {
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 
-    public static final OfByte C_CHAR = JAVA_BYTE;
-    public static final OfShort C_SHORT = JAVA_SHORT;
-    public static final OfInt C_INT = JAVA_INT;
-    public static final OfLong C_LONG = JAVA_LONG;
-    public static final OfLong C_LONG_LONG = JAVA_LONG;
-    public static final OfFloat C_FLOAT = JAVA_FLOAT;
-    public static final OfDouble C_DOUBLE = JAVA_DOUBLE;
-    public static final AddressLayout C_POINTER = RuntimeHelper.POINTER;
+import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
+public class renderdoc_app_h extends renderdoc_app_h$shared {
+
+    renderdoc_app_h() {
+        // Should not be called directly
+    }
+
+    static final Arena LIBRARY_ARENA = Arena.ofAuto();
+
+    static final SymbolLookup SYMBOL_LOOKUP = SymbolLookup.loaderLookup()
+            .or(Linker.nativeLinker().defaultLookup());
+
+    private static final int _STDINT_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _STDINT_H 1
      * }
      */
     public static int _STDINT_H() {
-        return (int)1L;
+        return _STDINT_H;
     }
+    private static final int _FEATURES_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _FEATURES_H 1
      * }
      */
     public static int _FEATURES_H() {
-        return (int)1L;
+        return _FEATURES_H;
     }
+    private static final int _DEFAULT_SOURCE = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _DEFAULT_SOURCE 1
      * }
      */
     public static int _DEFAULT_SOURCE() {
-        return (int)1L;
+        return _DEFAULT_SOURCE;
     }
+    private static final int __GLIBC_USE_ISOC2Y = (int)0L;
     /**
-     * {@snippet :
-     * #define __GLIBC_USE_ISOC2X 0
+     * {@snippet lang=c :
+     * #define __GLIBC_USE_ISOC2Y 0
      * }
      */
-    public static int __GLIBC_USE_ISOC2X() {
-        return (int)0L;
+    public static int __GLIBC_USE_ISOC2Y() {
+        return __GLIBC_USE_ISOC2Y;
     }
+    private static final int __GLIBC_USE_ISOC23 = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
+     * #define __GLIBC_USE_ISOC23 0
+     * }
+     */
+    public static int __GLIBC_USE_ISOC23() {
+        return __GLIBC_USE_ISOC23;
+    }
+    private static final int __USE_ISOC11 = (int)1L;
+    /**
+     * {@snippet lang=c :
      * #define __USE_ISOC11 1
      * }
      */
     public static int __USE_ISOC11() {
-        return (int)1L;
+        return __USE_ISOC11;
     }
+    private static final int __USE_ISOC99 = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_ISOC99 1
      * }
      */
     public static int __USE_ISOC99() {
-        return (int)1L;
+        return __USE_ISOC99;
     }
+    private static final int __USE_ISOC95 = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_ISOC95 1
      * }
      */
     public static int __USE_ISOC95() {
-        return (int)1L;
+        return __USE_ISOC95;
     }
+    private static final int __USE_POSIX_IMPLICITLY = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_POSIX_IMPLICITLY 1
      * }
      */
     public static int __USE_POSIX_IMPLICITLY() {
-        return (int)1L;
+        return __USE_POSIX_IMPLICITLY;
     }
+    private static final int _POSIX_SOURCE = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _POSIX_SOURCE 1
      * }
      */
     public static int _POSIX_SOURCE() {
-        return (int)1L;
+        return _POSIX_SOURCE;
     }
+    private static final int __USE_POSIX = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_POSIX 1
      * }
      */
     public static int __USE_POSIX() {
-        return (int)1L;
+        return __USE_POSIX;
     }
+    private static final int __USE_POSIX2 = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_POSIX2 1
      * }
      */
     public static int __USE_POSIX2() {
-        return (int)1L;
+        return __USE_POSIX2;
     }
+    private static final int __USE_POSIX199309 = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_POSIX199309 1
      * }
      */
     public static int __USE_POSIX199309() {
-        return (int)1L;
+        return __USE_POSIX199309;
     }
+    private static final int __USE_POSIX199506 = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_POSIX199506 1
      * }
      */
     public static int __USE_POSIX199506() {
-        return (int)1L;
+        return __USE_POSIX199506;
     }
+    private static final int __USE_XOPEN2K = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_XOPEN2K 1
      * }
      */
     public static int __USE_XOPEN2K() {
-        return (int)1L;
+        return __USE_XOPEN2K;
     }
+    private static final int __USE_XOPEN2K8 = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_XOPEN2K8 1
      * }
      */
     public static int __USE_XOPEN2K8() {
-        return (int)1L;
+        return __USE_XOPEN2K8;
     }
+    private static final int _ATFILE_SOURCE = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _ATFILE_SOURCE 1
      * }
      */
     public static int _ATFILE_SOURCE() {
-        return (int)1L;
+        return _ATFILE_SOURCE;
     }
+    private static final int __WORDSIZE = (int)64L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __WORDSIZE 64
      * }
      */
     public static int __WORDSIZE() {
-        return (int)64L;
+        return __WORDSIZE;
     }
+    private static final int __WORDSIZE_TIME64_COMPAT32 = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __WORDSIZE_TIME64_COMPAT32 1
      * }
      */
     public static int __WORDSIZE_TIME64_COMPAT32() {
-        return (int)1L;
+        return __WORDSIZE_TIME64_COMPAT32;
     }
+    private static final int __SYSCALL_WORDSIZE = (int)64L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __SYSCALL_WORDSIZE 64
      * }
      */
     public static int __SYSCALL_WORDSIZE() {
-        return (int)64L;
+        return __SYSCALL_WORDSIZE;
     }
+    private static final int __USE_TIME_BITS64 = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_TIME_BITS64 1
      * }
      */
     public static int __USE_TIME_BITS64() {
-        return (int)1L;
+        return __USE_TIME_BITS64;
     }
+    private static final int __USE_MISC = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_MISC 1
      * }
      */
     public static int __USE_MISC() {
-        return (int)1L;
+        return __USE_MISC;
     }
+    private static final int __USE_ATFILE = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_ATFILE 1
      * }
      */
     public static int __USE_ATFILE() {
-        return (int)1L;
+        return __USE_ATFILE;
     }
+    private static final int __USE_FORTIFY_LEVEL = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __USE_FORTIFY_LEVEL 0
      * }
      */
     public static int __USE_FORTIFY_LEVEL() {
-        return (int)0L;
+        return __USE_FORTIFY_LEVEL;
     }
+    private static final int __GLIBC_USE_DEPRECATED_GETS = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __GLIBC_USE_DEPRECATED_GETS 0
      * }
      */
     public static int __GLIBC_USE_DEPRECATED_GETS() {
-        return (int)0L;
+        return __GLIBC_USE_DEPRECATED_GETS;
     }
+    private static final int __GLIBC_USE_DEPRECATED_SCANF = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __GLIBC_USE_DEPRECATED_SCANF 0
      * }
      */
     public static int __GLIBC_USE_DEPRECATED_SCANF() {
-        return (int)0L;
+        return __GLIBC_USE_DEPRECATED_SCANF;
     }
+    private static final int __GLIBC_USE_C23_STRTOL = (int)0L;
     /**
-     * {@snippet :
-     * #define __GLIBC_USE_C2X_STRTOL 0
+     * {@snippet lang=c :
+     * #define __GLIBC_USE_C23_STRTOL 0
      * }
      */
-    public static int __GLIBC_USE_C2X_STRTOL() {
-        return (int)0L;
+    public static int __GLIBC_USE_C23_STRTOL() {
+        return __GLIBC_USE_C23_STRTOL;
     }
+    private static final int _STDC_PREDEF_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _STDC_PREDEF_H 1
      * }
      */
     public static int _STDC_PREDEF_H() {
-        return (int)1L;
+        return _STDC_PREDEF_H;
     }
+    private static final int __STDC_IEC_559__ = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __STDC_IEC_559__ 1
      * }
      */
     public static int __STDC_IEC_559__() {
-        return (int)1L;
+        return __STDC_IEC_559__;
     }
+    private static final int __STDC_IEC_559_COMPLEX__ = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __STDC_IEC_559_COMPLEX__ 1
      * }
      */
     public static int __STDC_IEC_559_COMPLEX__() {
-        return (int)1L;
+        return __STDC_IEC_559_COMPLEX__;
     }
+    private static final int __GNU_LIBRARY__ = (int)6L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __GNU_LIBRARY__ 6
      * }
      */
     public static int __GNU_LIBRARY__() {
-        return (int)6L;
+        return __GNU_LIBRARY__;
     }
+    private static final int __GLIBC__ = (int)2L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __GLIBC__ 2
      * }
      */
     public static int __GLIBC__() {
-        return (int)2L;
+        return __GLIBC__;
     }
+    private static final int __GLIBC_MINOR__ = (int)42L;
     /**
-     * {@snippet :
-     * #define __GLIBC_MINOR__ 39
+     * {@snippet lang=c :
+     * #define __GLIBC_MINOR__ 42
      * }
      */
     public static int __GLIBC_MINOR__() {
-        return (int)39L;
+        return __GLIBC_MINOR__;
     }
+    private static final int _SYS_CDEFS_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _SYS_CDEFS_H 1
      * }
      */
     public static int _SYS_CDEFS_H() {
-        return (int)1L;
+        return _SYS_CDEFS_H;
     }
+    private static final int __glibc_c99_flexarr_available = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __glibc_c99_flexarr_available 1
      * }
      */
     public static int __glibc_c99_flexarr_available() {
-        return (int)1L;
+        return __glibc_c99_flexarr_available;
     }
+    private static final int __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI 0
      * }
      */
     public static int __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI() {
-        return (int)0L;
+        return __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI;
     }
+    private static final int __HAVE_GENERIC_SELECTION = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __HAVE_GENERIC_SELECTION 1
      * }
      */
     public static int __HAVE_GENERIC_SELECTION() {
-        return (int)1L;
+        return __HAVE_GENERIC_SELECTION;
     }
+    private static final int __GLIBC_USE_LIB_EXT2 = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __GLIBC_USE_LIB_EXT2 0
      * }
      */
     public static int __GLIBC_USE_LIB_EXT2() {
-        return (int)0L;
+        return __GLIBC_USE_LIB_EXT2;
     }
+    private static final int __GLIBC_USE_IEC_60559_BFP_EXT = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __GLIBC_USE_IEC_60559_BFP_EXT 0
      * }
      */
     public static int __GLIBC_USE_IEC_60559_BFP_EXT() {
-        return (int)0L;
+        return __GLIBC_USE_IEC_60559_BFP_EXT;
     }
+    private static final int __GLIBC_USE_IEC_60559_BFP_EXT_C23 = (int)0L;
     /**
-     * {@snippet :
-     * #define __GLIBC_USE_IEC_60559_BFP_EXT_C2X 0
+     * {@snippet lang=c :
+     * #define __GLIBC_USE_IEC_60559_BFP_EXT_C23 0
      * }
      */
-    public static int __GLIBC_USE_IEC_60559_BFP_EXT_C2X() {
-        return (int)0L;
+    public static int __GLIBC_USE_IEC_60559_BFP_EXT_C23() {
+        return __GLIBC_USE_IEC_60559_BFP_EXT_C23;
     }
+    private static final int __GLIBC_USE_IEC_60559_EXT = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __GLIBC_USE_IEC_60559_EXT 0
      * }
      */
     public static int __GLIBC_USE_IEC_60559_EXT() {
-        return (int)0L;
+        return __GLIBC_USE_IEC_60559_EXT;
     }
+    private static final int __GLIBC_USE_IEC_60559_FUNCS_EXT = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __GLIBC_USE_IEC_60559_FUNCS_EXT 0
      * }
      */
     public static int __GLIBC_USE_IEC_60559_FUNCS_EXT() {
-        return (int)0L;
+        return __GLIBC_USE_IEC_60559_FUNCS_EXT;
     }
+    private static final int __GLIBC_USE_IEC_60559_FUNCS_EXT_C23 = (int)0L;
     /**
-     * {@snippet :
-     * #define __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X 0
+     * {@snippet lang=c :
+     * #define __GLIBC_USE_IEC_60559_FUNCS_EXT_C23 0
      * }
      */
-    public static int __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X() {
-        return (int)0L;
+    public static int __GLIBC_USE_IEC_60559_FUNCS_EXT_C23() {
+        return __GLIBC_USE_IEC_60559_FUNCS_EXT_C23;
     }
+    private static final int __GLIBC_USE_IEC_60559_TYPES_EXT = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __GLIBC_USE_IEC_60559_TYPES_EXT 0
      * }
      */
     public static int __GLIBC_USE_IEC_60559_TYPES_EXT() {
-        return (int)0L;
+        return __GLIBC_USE_IEC_60559_TYPES_EXT;
     }
+    private static final int _BITS_TYPES_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _BITS_TYPES_H 1
      * }
      */
     public static int _BITS_TYPES_H() {
-        return (int)1L;
+        return _BITS_TYPES_H;
     }
+    private static final int _BITS_TYPESIZES_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _BITS_TYPESIZES_H 1
      * }
      */
     public static int _BITS_TYPESIZES_H() {
-        return (int)1L;
+        return _BITS_TYPESIZES_H;
     }
+    private static final int __OFF_T_MATCHES_OFF64_T = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __OFF_T_MATCHES_OFF64_T 1
      * }
      */
     public static int __OFF_T_MATCHES_OFF64_T() {
-        return (int)1L;
+        return __OFF_T_MATCHES_OFF64_T;
     }
+    private static final int __INO_T_MATCHES_INO64_T = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __INO_T_MATCHES_INO64_T 1
      * }
      */
     public static int __INO_T_MATCHES_INO64_T() {
-        return (int)1L;
+        return __INO_T_MATCHES_INO64_T;
     }
+    private static final int __RLIM_T_MATCHES_RLIM64_T = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __RLIM_T_MATCHES_RLIM64_T 1
      * }
      */
     public static int __RLIM_T_MATCHES_RLIM64_T() {
-        return (int)1L;
+        return __RLIM_T_MATCHES_RLIM64_T;
     }
+    private static final int __STATFS_MATCHES_STATFS64 = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __STATFS_MATCHES_STATFS64 1
      * }
      */
     public static int __STATFS_MATCHES_STATFS64() {
-        return (int)1L;
+        return __STATFS_MATCHES_STATFS64;
     }
+    private static final int __KERNEL_OLD_TIMEVAL_MATCHES_TIMEVAL64 = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __KERNEL_OLD_TIMEVAL_MATCHES_TIMEVAL64 1
      * }
      */
     public static int __KERNEL_OLD_TIMEVAL_MATCHES_TIMEVAL64() {
-        return (int)1L;
+        return __KERNEL_OLD_TIMEVAL_MATCHES_TIMEVAL64;
     }
+    private static final int __FD_SETSIZE = (int)1024L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __FD_SETSIZE 1024
      * }
      */
     public static int __FD_SETSIZE() {
-        return (int)1024L;
+        return __FD_SETSIZE;
     }
+    private static final int _BITS_TIME64_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _BITS_TIME64_H 1
      * }
      */
     public static int _BITS_TIME64_H() {
-        return (int)1L;
+        return _BITS_TIME64_H;
     }
+    private static final int _BITS_WCHAR_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _BITS_WCHAR_H 1
      * }
      */
     public static int _BITS_WCHAR_H() {
-        return (int)1L;
+        return _BITS_WCHAR_H;
     }
+    private static final int _BITS_STDINT_INTN_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _BITS_STDINT_INTN_H 1
      * }
      */
     public static int _BITS_STDINT_INTN_H() {
-        return (int)1L;
+        return _BITS_STDINT_INTN_H;
     }
+    private static final int _BITS_STDINT_UINTN_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _BITS_STDINT_UINTN_H 1
      * }
      */
     public static int _BITS_STDINT_UINTN_H() {
-        return (int)1L;
+        return _BITS_STDINT_UINTN_H;
     }
+    private static final int _BITS_STDINT_LEAST_H = (int)1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _BITS_STDINT_LEAST_H 1
      * }
      */
     public static int _BITS_STDINT_LEAST_H() {
-        return (int)1L;
+        return _BITS_STDINT_LEAST_H;
     }
     /**
-     * {@snippet :
-     * typedef unsigned char __u_char;
+     * {@snippet lang=c :
+     * typedef unsigned char __u_char
      * }
      */
-    public static final OfByte __u_char = JAVA_BYTE;
+    public static final OfByte __u_char = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef unsigned short __u_short;
+     * {@snippet lang=c :
+     * typedef unsigned short __u_short
      * }
      */
-    public static final OfShort __u_short = JAVA_SHORT;
+    public static final OfShort __u_short = renderdoc_app_h.C_SHORT;
     /**
-     * {@snippet :
-     * typedef unsigned int __u_int;
+     * {@snippet lang=c :
+     * typedef unsigned int __u_int
      * }
      */
-    public static final OfInt __u_int = JAVA_INT;
+    public static final OfInt __u_int = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef unsigned long __u_long;
+     * {@snippet lang=c :
+     * typedef unsigned long __u_long
      * }
      */
-    public static final OfLong __u_long = JAVA_LONG;
+    public static final OfLong __u_long = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef signed char __int8_t;
+     * {@snippet lang=c :
+     * typedef signed char __int8_t
      * }
      */
-    public static final OfByte __int8_t = JAVA_BYTE;
+    public static final OfByte __int8_t = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef unsigned char __uint8_t;
+     * {@snippet lang=c :
+     * typedef unsigned char __uint8_t
      * }
      */
-    public static final OfByte __uint8_t = JAVA_BYTE;
+    public static final OfByte __uint8_t = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef short __int16_t;
+     * {@snippet lang=c :
+     * typedef short __int16_t
      * }
      */
-    public static final OfShort __int16_t = JAVA_SHORT;
+    public static final OfShort __int16_t = renderdoc_app_h.C_SHORT;
     /**
-     * {@snippet :
-     * typedef unsigned short __uint16_t;
+     * {@snippet lang=c :
+     * typedef unsigned short __uint16_t
      * }
      */
-    public static final OfShort __uint16_t = JAVA_SHORT;
+    public static final OfShort __uint16_t = renderdoc_app_h.C_SHORT;
     /**
-     * {@snippet :
-     * typedef int __int32_t;
+     * {@snippet lang=c :
+     * typedef int __int32_t
      * }
      */
-    public static final OfInt __int32_t = JAVA_INT;
+    public static final OfInt __int32_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef unsigned int __uint32_t;
+     * {@snippet lang=c :
+     * typedef unsigned int __uint32_t
      * }
      */
-    public static final OfInt __uint32_t = JAVA_INT;
+    public static final OfInt __uint32_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef long __int64_t;
+     * {@snippet lang=c :
+     * typedef long __int64_t
      * }
      */
-    public static final OfLong __int64_t = JAVA_LONG;
+    public static final OfLong __int64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __uint64_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __uint64_t
      * }
      */
-    public static final OfLong __uint64_t = JAVA_LONG;
+    public static final OfLong __uint64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef signed char __int_least8_t;
+     * {@snippet lang=c :
+     * typedef __int8_t __int_least8_t
      * }
      */
-    public static final OfByte __int_least8_t = JAVA_BYTE;
+    public static final OfByte __int_least8_t = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef unsigned char __uint_least8_t;
+     * {@snippet lang=c :
+     * typedef __uint8_t __uint_least8_t
      * }
      */
-    public static final OfByte __uint_least8_t = JAVA_BYTE;
+    public static final OfByte __uint_least8_t = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef short __int_least16_t;
+     * {@snippet lang=c :
+     * typedef __int16_t __int_least16_t
      * }
      */
-    public static final OfShort __int_least16_t = JAVA_SHORT;
+    public static final OfShort __int_least16_t = renderdoc_app_h.C_SHORT;
     /**
-     * {@snippet :
-     * typedef unsigned short __uint_least16_t;
+     * {@snippet lang=c :
+     * typedef __uint16_t __uint_least16_t
      * }
      */
-    public static final OfShort __uint_least16_t = JAVA_SHORT;
+    public static final OfShort __uint_least16_t = renderdoc_app_h.C_SHORT;
     /**
-     * {@snippet :
-     * typedef int __int_least32_t;
+     * {@snippet lang=c :
+     * typedef __int32_t __int_least32_t
      * }
      */
-    public static final OfInt __int_least32_t = JAVA_INT;
+    public static final OfInt __int_least32_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef unsigned int __uint_least32_t;
+     * {@snippet lang=c :
+     * typedef __uint32_t __uint_least32_t
      * }
      */
-    public static final OfInt __uint_least32_t = JAVA_INT;
+    public static final OfInt __uint_least32_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef long __int_least64_t;
+     * {@snippet lang=c :
+     * typedef __int64_t __int_least64_t
      * }
      */
-    public static final OfLong __int_least64_t = JAVA_LONG;
+    public static final OfLong __int_least64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __uint_least64_t;
+     * {@snippet lang=c :
+     * typedef __uint64_t __uint_least64_t
      * }
      */
-    public static final OfLong __uint_least64_t = JAVA_LONG;
+    public static final OfLong __uint_least64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __quad_t;
+     * {@snippet lang=c :
+     * typedef long __quad_t
      * }
      */
-    public static final OfLong __quad_t = JAVA_LONG;
+    public static final OfLong __quad_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __u_quad_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __u_quad_t
      * }
      */
-    public static final OfLong __u_quad_t = JAVA_LONG;
+    public static final OfLong __u_quad_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __intmax_t;
+     * {@snippet lang=c :
+     * typedef long __intmax_t
      * }
      */
-    public static final OfLong __intmax_t = JAVA_LONG;
+    public static final OfLong __intmax_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __uintmax_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __uintmax_t
      * }
      */
-    public static final OfLong __uintmax_t = JAVA_LONG;
+    public static final OfLong __uintmax_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __dev_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __dev_t
      * }
      */
-    public static final OfLong __dev_t = JAVA_LONG;
+    public static final OfLong __dev_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned int __uid_t;
+     * {@snippet lang=c :
+     * typedef unsigned int __uid_t
      * }
      */
-    public static final OfInt __uid_t = JAVA_INT;
+    public static final OfInt __uid_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef unsigned int __gid_t;
+     * {@snippet lang=c :
+     * typedef unsigned int __gid_t
      * }
      */
-    public static final OfInt __gid_t = JAVA_INT;
+    public static final OfInt __gid_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef unsigned long __ino_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __ino_t
      * }
      */
-    public static final OfLong __ino_t = JAVA_LONG;
+    public static final OfLong __ino_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __ino64_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __ino64_t
      * }
      */
-    public static final OfLong __ino64_t = JAVA_LONG;
+    public static final OfLong __ino64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned int __mode_t;
+     * {@snippet lang=c :
+     * typedef unsigned int __mode_t
      * }
      */
-    public static final OfInt __mode_t = JAVA_INT;
+    public static final OfInt __mode_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef unsigned long __nlink_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __nlink_t
      * }
      */
-    public static final OfLong __nlink_t = JAVA_LONG;
+    public static final OfLong __nlink_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __off_t;
+     * {@snippet lang=c :
+     * typedef long __off_t
      * }
      */
-    public static final OfLong __off_t = JAVA_LONG;
+    public static final OfLong __off_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __off64_t;
+     * {@snippet lang=c :
+     * typedef long __off64_t
      * }
      */
-    public static final OfLong __off64_t = JAVA_LONG;
+    public static final OfLong __off64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef int __pid_t;
+     * {@snippet lang=c :
+     * typedef int __pid_t
      * }
      */
-    public static final OfInt __pid_t = JAVA_INT;
+    public static final OfInt __pid_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef long __clock_t;
+     * {@snippet lang=c :
+     * typedef long __clock_t
      * }
      */
-    public static final OfLong __clock_t = JAVA_LONG;
+    public static final OfLong __clock_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __rlim_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __rlim_t
      * }
      */
-    public static final OfLong __rlim_t = JAVA_LONG;
+    public static final OfLong __rlim_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __rlim64_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __rlim64_t
      * }
      */
-    public static final OfLong __rlim64_t = JAVA_LONG;
+    public static final OfLong __rlim64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned int __id_t;
+     * {@snippet lang=c :
+     * typedef unsigned int __id_t
      * }
      */
-    public static final OfInt __id_t = JAVA_INT;
+    public static final OfInt __id_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef long __time_t;
+     * {@snippet lang=c :
+     * typedef long __time_t
      * }
      */
-    public static final OfLong __time_t = JAVA_LONG;
+    public static final OfLong __time_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned int __useconds_t;
+     * {@snippet lang=c :
+     * typedef unsigned int __useconds_t
      * }
      */
-    public static final OfInt __useconds_t = JAVA_INT;
+    public static final OfInt __useconds_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef long __suseconds_t;
+     * {@snippet lang=c :
+     * typedef long __suseconds_t
      * }
      */
-    public static final OfLong __suseconds_t = JAVA_LONG;
+    public static final OfLong __suseconds_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __suseconds64_t;
+     * {@snippet lang=c :
+     * typedef long __suseconds64_t
      * }
      */
-    public static final OfLong __suseconds64_t = JAVA_LONG;
+    public static final OfLong __suseconds64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef int __daddr_t;
+     * {@snippet lang=c :
+     * typedef int __daddr_t
      * }
      */
-    public static final OfInt __daddr_t = JAVA_INT;
+    public static final OfInt __daddr_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef int __key_t;
+     * {@snippet lang=c :
+     * typedef int __key_t
      * }
      */
-    public static final OfInt __key_t = JAVA_INT;
+    public static final OfInt __key_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef int __clockid_t;
+     * {@snippet lang=c :
+     * typedef int __clockid_t
      * }
      */
-    public static final OfInt __clockid_t = JAVA_INT;
+    public static final OfInt __clockid_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef void* __timer_t;
+     * {@snippet lang=c :
+     * typedef void *__timer_t
      * }
      */
-    public static final AddressLayout __timer_t = RuntimeHelper.POINTER;
+    public static final AddressLayout __timer_t = renderdoc_app_h.C_POINTER;
     /**
-     * {@snippet :
-     * typedef long __blksize_t;
+     * {@snippet lang=c :
+     * typedef long __blksize_t
      * }
      */
-    public static final OfLong __blksize_t = JAVA_LONG;
+    public static final OfLong __blksize_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __blkcnt_t;
+     * {@snippet lang=c :
+     * typedef long __blkcnt_t
      * }
      */
-    public static final OfLong __blkcnt_t = JAVA_LONG;
+    public static final OfLong __blkcnt_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __blkcnt64_t;
+     * {@snippet lang=c :
+     * typedef long __blkcnt64_t
      * }
      */
-    public static final OfLong __blkcnt64_t = JAVA_LONG;
+    public static final OfLong __blkcnt64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __fsblkcnt_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __fsblkcnt_t
      * }
      */
-    public static final OfLong __fsblkcnt_t = JAVA_LONG;
+    public static final OfLong __fsblkcnt_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __fsblkcnt64_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __fsblkcnt64_t
      * }
      */
-    public static final OfLong __fsblkcnt64_t = JAVA_LONG;
+    public static final OfLong __fsblkcnt64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __fsfilcnt_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __fsfilcnt_t
      * }
      */
-    public static final OfLong __fsfilcnt_t = JAVA_LONG;
+    public static final OfLong __fsfilcnt_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __fsfilcnt64_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __fsfilcnt64_t
      * }
      */
-    public static final OfLong __fsfilcnt64_t = JAVA_LONG;
+    public static final OfLong __fsfilcnt64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __fsword_t;
+     * {@snippet lang=c :
+     * typedef long __fsword_t
      * }
      */
-    public static final OfLong __fsword_t = JAVA_LONG;
+    public static final OfLong __fsword_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __ssize_t;
+     * {@snippet lang=c :
+     * typedef long __ssize_t
      * }
      */
-    public static final OfLong __ssize_t = JAVA_LONG;
+    public static final OfLong __ssize_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __syscall_slong_t;
+     * {@snippet lang=c :
+     * typedef long __syscall_slong_t
      * }
      */
-    public static final OfLong __syscall_slong_t = JAVA_LONG;
+    public static final OfLong __syscall_slong_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long __syscall_ulong_t;
+     * {@snippet lang=c :
+     * typedef unsigned long __syscall_ulong_t
      * }
      */
-    public static final OfLong __syscall_ulong_t = JAVA_LONG;
+    public static final OfLong __syscall_ulong_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long __loff_t;
+     * {@snippet lang=c :
+     * typedef __off64_t __loff_t
      * }
      */
-    public static final OfLong __loff_t = JAVA_LONG;
+    public static final OfLong __loff_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef char* __caddr_t;
+     * {@snippet lang=c :
+     * typedef char *__caddr_t
      * }
      */
-    public static final AddressLayout __caddr_t = RuntimeHelper.POINTER;
+    public static final AddressLayout __caddr_t = renderdoc_app_h.C_POINTER;
     /**
-     * {@snippet :
-     * typedef long __intptr_t;
+     * {@snippet lang=c :
+     * typedef long __intptr_t
      * }
      */
-    public static final OfLong __intptr_t = JAVA_LONG;
+    public static final OfLong __intptr_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned int __socklen_t;
+     * {@snippet lang=c :
+     * typedef unsigned int __socklen_t
      * }
      */
-    public static final OfInt __socklen_t = JAVA_INT;
+    public static final OfInt __socklen_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef int __sig_atomic_t;
+     * {@snippet lang=c :
+     * typedef int __sig_atomic_t
      * }
      */
-    public static final OfInt __sig_atomic_t = JAVA_INT;
+    public static final OfInt __sig_atomic_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef signed char int8_t;
+     * {@snippet lang=c :
+     * typedef __int8_t int8_t
      * }
      */
-    public static final OfByte int8_t = JAVA_BYTE;
+    public static final OfByte int8_t = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef short int16_t;
+     * {@snippet lang=c :
+     * typedef __int16_t int16_t
      * }
      */
-    public static final OfShort int16_t = JAVA_SHORT;
+    public static final OfShort int16_t = renderdoc_app_h.C_SHORT;
     /**
-     * {@snippet :
-     * typedef int int32_t;
+     * {@snippet lang=c :
+     * typedef __int32_t int32_t
      * }
      */
-    public static final OfInt int32_t = JAVA_INT;
+    public static final OfInt int32_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef long int64_t;
+     * {@snippet lang=c :
+     * typedef __int64_t int64_t
      * }
      */
-    public static final OfLong int64_t = JAVA_LONG;
+    public static final OfLong int64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned char uint8_t;
+     * {@snippet lang=c :
+     * typedef __uint8_t uint8_t
      * }
      */
-    public static final OfByte uint8_t = JAVA_BYTE;
+    public static final OfByte uint8_t = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef unsigned short uint16_t;
+     * {@snippet lang=c :
+     * typedef __uint16_t uint16_t
      * }
      */
-    public static final OfShort uint16_t = JAVA_SHORT;
+    public static final OfShort uint16_t = renderdoc_app_h.C_SHORT;
     /**
-     * {@snippet :
-     * typedef unsigned int uint32_t;
+     * {@snippet lang=c :
+     * typedef __uint32_t uint32_t
      * }
      */
-    public static final OfInt uint32_t = JAVA_INT;
+    public static final OfInt uint32_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef unsigned long uint64_t;
+     * {@snippet lang=c :
+     * typedef __uint64_t uint64_t
      * }
      */
-    public static final OfLong uint64_t = JAVA_LONG;
+    public static final OfLong uint64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef signed char int_least8_t;
+     * {@snippet lang=c :
+     * typedef __int_least8_t int_least8_t
      * }
      */
-    public static final OfByte int_least8_t = JAVA_BYTE;
+    public static final OfByte int_least8_t = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef short int_least16_t;
+     * {@snippet lang=c :
+     * typedef __int_least16_t int_least16_t
      * }
      */
-    public static final OfShort int_least16_t = JAVA_SHORT;
+    public static final OfShort int_least16_t = renderdoc_app_h.C_SHORT;
     /**
-     * {@snippet :
-     * typedef int int_least32_t;
+     * {@snippet lang=c :
+     * typedef __int_least32_t int_least32_t
      * }
      */
-    public static final OfInt int_least32_t = JAVA_INT;
+    public static final OfInt int_least32_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef long int_least64_t;
+     * {@snippet lang=c :
+     * typedef __int_least64_t int_least64_t
      * }
      */
-    public static final OfLong int_least64_t = JAVA_LONG;
+    public static final OfLong int_least64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned char uint_least8_t;
+     * {@snippet lang=c :
+     * typedef __uint_least8_t uint_least8_t
      * }
      */
-    public static final OfByte uint_least8_t = JAVA_BYTE;
+    public static final OfByte uint_least8_t = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef unsigned short uint_least16_t;
+     * {@snippet lang=c :
+     * typedef __uint_least16_t uint_least16_t
      * }
      */
-    public static final OfShort uint_least16_t = JAVA_SHORT;
+    public static final OfShort uint_least16_t = renderdoc_app_h.C_SHORT;
     /**
-     * {@snippet :
-     * typedef unsigned int uint_least32_t;
+     * {@snippet lang=c :
+     * typedef __uint_least32_t uint_least32_t
      * }
      */
-    public static final OfInt uint_least32_t = JAVA_INT;
+    public static final OfInt uint_least32_t = renderdoc_app_h.C_INT;
     /**
-     * {@snippet :
-     * typedef unsigned long uint_least64_t;
+     * {@snippet lang=c :
+     * typedef __uint_least64_t uint_least64_t
      * }
      */
-    public static final OfLong uint_least64_t = JAVA_LONG;
+    public static final OfLong uint_least64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef signed char int_fast8_t;
+     * {@snippet lang=c :
+     * typedef signed char int_fast8_t
      * }
      */
-    public static final OfByte int_fast8_t = JAVA_BYTE;
+    public static final OfByte int_fast8_t = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef long int_fast16_t;
+     * {@snippet lang=c :
+     * typedef long int_fast16_t
      * }
      */
-    public static final OfLong int_fast16_t = JAVA_LONG;
+    public static final OfLong int_fast16_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long int_fast32_t;
+     * {@snippet lang=c :
+     * typedef long int_fast32_t
      * }
      */
-    public static final OfLong int_fast32_t = JAVA_LONG;
+    public static final OfLong int_fast32_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long int_fast64_t;
+     * {@snippet lang=c :
+     * typedef long int_fast64_t
      * }
      */
-    public static final OfLong int_fast64_t = JAVA_LONG;
+    public static final OfLong int_fast64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned char uint_fast8_t;
+     * {@snippet lang=c :
+     * typedef unsigned char uint_fast8_t
      * }
      */
-    public static final OfByte uint_fast8_t = JAVA_BYTE;
+    public static final OfByte uint_fast8_t = renderdoc_app_h.C_CHAR;
     /**
-     * {@snippet :
-     * typedef unsigned long uint_fast16_t;
+     * {@snippet lang=c :
+     * typedef unsigned long uint_fast16_t
      * }
      */
-    public static final OfLong uint_fast16_t = JAVA_LONG;
+    public static final OfLong uint_fast16_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long uint_fast32_t;
+     * {@snippet lang=c :
+     * typedef unsigned long uint_fast32_t
      * }
      */
-    public static final OfLong uint_fast32_t = JAVA_LONG;
+    public static final OfLong uint_fast32_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long uint_fast64_t;
+     * {@snippet lang=c :
+     * typedef unsigned long uint_fast64_t
      * }
      */
-    public static final OfLong uint_fast64_t = JAVA_LONG;
+    public static final OfLong uint_fast64_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long intptr_t;
+     * {@snippet lang=c :
+     * typedef long intptr_t
      * }
      */
-    public static final OfLong intptr_t = JAVA_LONG;
+    public static final OfLong intptr_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long uintptr_t;
+     * {@snippet lang=c :
+     * typedef unsigned long uintptr_t
      * }
      */
-    public static final OfLong uintptr_t = JAVA_LONG;
+    public static final OfLong uintptr_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef long intmax_t;
+     * {@snippet lang=c :
+     * typedef __intmax_t intmax_t
      * }
      */
-    public static final OfLong intmax_t = JAVA_LONG;
+    public static final OfLong intmax_t = renderdoc_app_h.C_LONG;
     /**
-     * {@snippet :
-     * typedef unsigned long uintmax_t;
+     * {@snippet lang=c :
+     * typedef __uintmax_t uintmax_t
      * }
      */
-    public static final OfLong uintmax_t = JAVA_LONG;
+    public static final OfLong uintmax_t = renderdoc_app_h.C_LONG;
+    private static final int eRENDERDOC_Option_AllowVSync = (int)0L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_AllowVSync = 0;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_AllowVSync = 0
      * }
      */
     public static int eRENDERDOC_Option_AllowVSync() {
-        return (int)0L;
+        return eRENDERDOC_Option_AllowVSync;
     }
+    private static final int eRENDERDOC_Option_AllowFullscreen = (int)1L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_AllowFullscreen = 1;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_AllowFullscreen = 1
      * }
      */
     public static int eRENDERDOC_Option_AllowFullscreen() {
-        return (int)1L;
+        return eRENDERDOC_Option_AllowFullscreen;
     }
+    private static final int eRENDERDOC_Option_APIValidation = (int)2L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_APIValidation = 2;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_APIValidation = 2
      * }
      */
     public static int eRENDERDOC_Option_APIValidation() {
-        return (int)2L;
+        return eRENDERDOC_Option_APIValidation;
     }
+    private static final int eRENDERDOC_Option_DebugDeviceMode = (int)2L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_DebugDeviceMode = 2;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_DebugDeviceMode = 2
      * }
      */
     public static int eRENDERDOC_Option_DebugDeviceMode() {
-        return (int)2L;
+        return eRENDERDOC_Option_DebugDeviceMode;
     }
+    private static final int eRENDERDOC_Option_CaptureCallstacks = (int)3L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_CaptureCallstacks = 3;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_CaptureCallstacks = 3
      * }
      */
     public static int eRENDERDOC_Option_CaptureCallstacks() {
-        return (int)3L;
+        return eRENDERDOC_Option_CaptureCallstacks;
     }
+    private static final int eRENDERDOC_Option_CaptureCallstacksOnlyDraws = (int)4L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_CaptureCallstacksOnlyDraws = 4;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_CaptureCallstacksOnlyDraws = 4
      * }
      */
     public static int eRENDERDOC_Option_CaptureCallstacksOnlyDraws() {
-        return (int)4L;
+        return eRENDERDOC_Option_CaptureCallstacksOnlyDraws;
     }
+    private static final int eRENDERDOC_Option_CaptureCallstacksOnlyActions = (int)4L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_CaptureCallstacksOnlyActions = 4;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_CaptureCallstacksOnlyActions = 4
      * }
      */
     public static int eRENDERDOC_Option_CaptureCallstacksOnlyActions() {
-        return (int)4L;
+        return eRENDERDOC_Option_CaptureCallstacksOnlyActions;
     }
+    private static final int eRENDERDOC_Option_DelayForDebugger = (int)5L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_DelayForDebugger = 5;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_DelayForDebugger = 5
      * }
      */
     public static int eRENDERDOC_Option_DelayForDebugger() {
-        return (int)5L;
+        return eRENDERDOC_Option_DelayForDebugger;
     }
+    private static final int eRENDERDOC_Option_VerifyBufferAccess = (int)6L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_VerifyBufferAccess = 6;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_VerifyBufferAccess = 6
      * }
      */
     public static int eRENDERDOC_Option_VerifyBufferAccess() {
-        return (int)6L;
+        return eRENDERDOC_Option_VerifyBufferAccess;
     }
+    private static final int eRENDERDOC_Option_VerifyMapWrites = (int)6L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_VerifyMapWrites = 6;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_VerifyMapWrites = 6
      * }
      */
     public static int eRENDERDOC_Option_VerifyMapWrites() {
-        return (int)6L;
+        return eRENDERDOC_Option_VerifyMapWrites;
     }
+    private static final int eRENDERDOC_Option_HookIntoChildren = (int)7L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_HookIntoChildren = 7;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_HookIntoChildren = 7
      * }
      */
     public static int eRENDERDOC_Option_HookIntoChildren() {
-        return (int)7L;
+        return eRENDERDOC_Option_HookIntoChildren;
     }
+    private static final int eRENDERDOC_Option_RefAllResources = (int)8L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_RefAllResources = 8;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_RefAllResources = 8
      * }
      */
     public static int eRENDERDOC_Option_RefAllResources() {
-        return (int)8L;
+        return eRENDERDOC_Option_RefAllResources;
     }
+    private static final int eRENDERDOC_Option_SaveAllInitials = (int)9L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_SaveAllInitials = 9;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_SaveAllInitials = 9
      * }
      */
     public static int eRENDERDOC_Option_SaveAllInitials() {
-        return (int)9L;
+        return eRENDERDOC_Option_SaveAllInitials;
     }
+    private static final int eRENDERDOC_Option_CaptureAllCmdLists = (int)10L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_CaptureAllCmdLists = 10;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_CaptureAllCmdLists = 10
      * }
      */
     public static int eRENDERDOC_Option_CaptureAllCmdLists() {
-        return (int)10L;
+        return eRENDERDOC_Option_CaptureAllCmdLists;
     }
+    private static final int eRENDERDOC_Option_DebugOutputMute = (int)11L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_DebugOutputMute = 11;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_DebugOutputMute = 11
      * }
      */
     public static int eRENDERDOC_Option_DebugOutputMute() {
-        return (int)11L;
+        return eRENDERDOC_Option_DebugOutputMute;
     }
+    private static final int eRENDERDOC_Option_AllowUnsupportedVendorExtensions = (int)12L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_AllowUnsupportedVendorExtensions = 12;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_AllowUnsupportedVendorExtensions = 12
      * }
      */
     public static int eRENDERDOC_Option_AllowUnsupportedVendorExtensions() {
-        return (int)12L;
+        return eRENDERDOC_Option_AllowUnsupportedVendorExtensions;
     }
+    private static final int eRENDERDOC_Option_SoftMemoryLimit = (int)13L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_SoftMemoryLimit = 13;
+     * {@snippet lang=c :
+     * enum RENDERDOC_CaptureOption.eRENDERDOC_Option_SoftMemoryLimit = 13
      * }
      */
     public static int eRENDERDOC_Option_SoftMemoryLimit() {
-        return (int)13L;
+        return eRENDERDOC_Option_SoftMemoryLimit;
     }
+    private static final int eRENDERDOC_Key_0 = (int)48L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_0 = 48;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_0 = 48
      * }
      */
     public static int eRENDERDOC_Key_0() {
-        return (int)48L;
+        return eRENDERDOC_Key_0;
     }
+    private static final int eRENDERDOC_Key_1 = (int)49L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_1 = 49;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_1 = 49
      * }
      */
     public static int eRENDERDOC_Key_1() {
-        return (int)49L;
+        return eRENDERDOC_Key_1;
     }
+    private static final int eRENDERDOC_Key_2 = (int)50L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_2 = 50;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_2 = 50
      * }
      */
     public static int eRENDERDOC_Key_2() {
-        return (int)50L;
+        return eRENDERDOC_Key_2;
     }
+    private static final int eRENDERDOC_Key_3 = (int)51L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_3 = 51;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_3 = 51
      * }
      */
     public static int eRENDERDOC_Key_3() {
-        return (int)51L;
+        return eRENDERDOC_Key_3;
     }
+    private static final int eRENDERDOC_Key_4 = (int)52L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_4 = 52;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_4 = 52
      * }
      */
     public static int eRENDERDOC_Key_4() {
-        return (int)52L;
+        return eRENDERDOC_Key_4;
     }
+    private static final int eRENDERDOC_Key_5 = (int)53L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_5 = 53;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_5 = 53
      * }
      */
     public static int eRENDERDOC_Key_5() {
-        return (int)53L;
+        return eRENDERDOC_Key_5;
     }
+    private static final int eRENDERDOC_Key_6 = (int)54L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_6 = 54;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_6 = 54
      * }
      */
     public static int eRENDERDOC_Key_6() {
-        return (int)54L;
+        return eRENDERDOC_Key_6;
     }
+    private static final int eRENDERDOC_Key_7 = (int)55L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_7 = 55;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_7 = 55
      * }
      */
     public static int eRENDERDOC_Key_7() {
-        return (int)55L;
+        return eRENDERDOC_Key_7;
     }
+    private static final int eRENDERDOC_Key_8 = (int)56L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_8 = 56;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_8 = 56
      * }
      */
     public static int eRENDERDOC_Key_8() {
-        return (int)56L;
+        return eRENDERDOC_Key_8;
     }
+    private static final int eRENDERDOC_Key_9 = (int)57L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_9 = 57;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_9 = 57
      * }
      */
     public static int eRENDERDOC_Key_9() {
-        return (int)57L;
+        return eRENDERDOC_Key_9;
     }
+    private static final int eRENDERDOC_Key_A = (int)65L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_A = 65;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_A = 65
      * }
      */
     public static int eRENDERDOC_Key_A() {
-        return (int)65L;
+        return eRENDERDOC_Key_A;
     }
+    private static final int eRENDERDOC_Key_B = (int)66L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_B = 66;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_B = 66
      * }
      */
     public static int eRENDERDOC_Key_B() {
-        return (int)66L;
+        return eRENDERDOC_Key_B;
     }
+    private static final int eRENDERDOC_Key_C = (int)67L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_C = 67;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_C = 67
      * }
      */
     public static int eRENDERDOC_Key_C() {
-        return (int)67L;
+        return eRENDERDOC_Key_C;
     }
+    private static final int eRENDERDOC_Key_D = (int)68L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_D = 68;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_D = 68
      * }
      */
     public static int eRENDERDOC_Key_D() {
-        return (int)68L;
+        return eRENDERDOC_Key_D;
     }
+    private static final int eRENDERDOC_Key_E = (int)69L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_E = 69;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_E = 69
      * }
      */
     public static int eRENDERDOC_Key_E() {
-        return (int)69L;
+        return eRENDERDOC_Key_E;
     }
+    private static final int eRENDERDOC_Key_F = (int)70L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F = 70;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F = 70
      * }
      */
     public static int eRENDERDOC_Key_F() {
-        return (int)70L;
+        return eRENDERDOC_Key_F;
     }
+    private static final int eRENDERDOC_Key_G = (int)71L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_G = 71;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_G = 71
      * }
      */
     public static int eRENDERDOC_Key_G() {
-        return (int)71L;
+        return eRENDERDOC_Key_G;
     }
+    private static final int eRENDERDOC_Key_H = (int)72L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_H = 72;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_H = 72
      * }
      */
     public static int eRENDERDOC_Key_H() {
-        return (int)72L;
+        return eRENDERDOC_Key_H;
     }
+    private static final int eRENDERDOC_Key_I = (int)73L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_I = 73;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_I = 73
      * }
      */
     public static int eRENDERDOC_Key_I() {
-        return (int)73L;
+        return eRENDERDOC_Key_I;
     }
+    private static final int eRENDERDOC_Key_J = (int)74L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_J = 74;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_J = 74
      * }
      */
     public static int eRENDERDOC_Key_J() {
-        return (int)74L;
+        return eRENDERDOC_Key_J;
     }
+    private static final int eRENDERDOC_Key_K = (int)75L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_K = 75;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_K = 75
      * }
      */
     public static int eRENDERDOC_Key_K() {
-        return (int)75L;
+        return eRENDERDOC_Key_K;
     }
+    private static final int eRENDERDOC_Key_L = (int)76L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_L = 76;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_L = 76
      * }
      */
     public static int eRENDERDOC_Key_L() {
-        return (int)76L;
+        return eRENDERDOC_Key_L;
     }
+    private static final int eRENDERDOC_Key_M = (int)77L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_M = 77;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_M = 77
      * }
      */
     public static int eRENDERDOC_Key_M() {
-        return (int)77L;
+        return eRENDERDOC_Key_M;
     }
+    private static final int eRENDERDOC_Key_N = (int)78L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_N = 78;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_N = 78
      * }
      */
     public static int eRENDERDOC_Key_N() {
-        return (int)78L;
+        return eRENDERDOC_Key_N;
     }
+    private static final int eRENDERDOC_Key_O = (int)79L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_O = 79;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_O = 79
      * }
      */
     public static int eRENDERDOC_Key_O() {
-        return (int)79L;
+        return eRENDERDOC_Key_O;
     }
+    private static final int eRENDERDOC_Key_P = (int)80L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_P = 80;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_P = 80
      * }
      */
     public static int eRENDERDOC_Key_P() {
-        return (int)80L;
+        return eRENDERDOC_Key_P;
     }
+    private static final int eRENDERDOC_Key_Q = (int)81L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Q = 81;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Q = 81
      * }
      */
     public static int eRENDERDOC_Key_Q() {
-        return (int)81L;
+        return eRENDERDOC_Key_Q;
     }
+    private static final int eRENDERDOC_Key_R = (int)82L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_R = 82;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_R = 82
      * }
      */
     public static int eRENDERDOC_Key_R() {
-        return (int)82L;
+        return eRENDERDOC_Key_R;
     }
+    private static final int eRENDERDOC_Key_S = (int)83L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_S = 83;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_S = 83
      * }
      */
     public static int eRENDERDOC_Key_S() {
-        return (int)83L;
+        return eRENDERDOC_Key_S;
     }
+    private static final int eRENDERDOC_Key_T = (int)84L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_T = 84;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_T = 84
      * }
      */
     public static int eRENDERDOC_Key_T() {
-        return (int)84L;
+        return eRENDERDOC_Key_T;
     }
+    private static final int eRENDERDOC_Key_U = (int)85L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_U = 85;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_U = 85
      * }
      */
     public static int eRENDERDOC_Key_U() {
-        return (int)85L;
+        return eRENDERDOC_Key_U;
     }
+    private static final int eRENDERDOC_Key_V = (int)86L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_V = 86;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_V = 86
      * }
      */
     public static int eRENDERDOC_Key_V() {
-        return (int)86L;
+        return eRENDERDOC_Key_V;
     }
+    private static final int eRENDERDOC_Key_W = (int)87L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_W = 87;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_W = 87
      * }
      */
     public static int eRENDERDOC_Key_W() {
-        return (int)87L;
+        return eRENDERDOC_Key_W;
     }
+    private static final int eRENDERDOC_Key_X = (int)88L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_X = 88;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_X = 88
      * }
      */
     public static int eRENDERDOC_Key_X() {
-        return (int)88L;
+        return eRENDERDOC_Key_X;
     }
+    private static final int eRENDERDOC_Key_Y = (int)89L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Y = 89;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Y = 89
      * }
      */
     public static int eRENDERDOC_Key_Y() {
-        return (int)89L;
+        return eRENDERDOC_Key_Y;
     }
+    private static final int eRENDERDOC_Key_Z = (int)90L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Z = 90;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Z = 90
      * }
      */
     public static int eRENDERDOC_Key_Z() {
-        return (int)90L;
+        return eRENDERDOC_Key_Z;
     }
+    private static final int eRENDERDOC_Key_NonPrintable = (int)256L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_NonPrintable = 256;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_NonPrintable = 256
      * }
      */
     public static int eRENDERDOC_Key_NonPrintable() {
-        return (int)256L;
+        return eRENDERDOC_Key_NonPrintable;
     }
+    private static final int eRENDERDOC_Key_Divide = (int)257L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Divide = 257;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Divide = 257
      * }
      */
     public static int eRENDERDOC_Key_Divide() {
-        return (int)257L;
+        return eRENDERDOC_Key_Divide;
     }
+    private static final int eRENDERDOC_Key_Multiply = (int)258L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Multiply = 258;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Multiply = 258
      * }
      */
     public static int eRENDERDOC_Key_Multiply() {
-        return (int)258L;
+        return eRENDERDOC_Key_Multiply;
     }
+    private static final int eRENDERDOC_Key_Subtract = (int)259L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Subtract = 259;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Subtract = 259
      * }
      */
     public static int eRENDERDOC_Key_Subtract() {
-        return (int)259L;
+        return eRENDERDOC_Key_Subtract;
     }
+    private static final int eRENDERDOC_Key_Plus = (int)260L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Plus = 260;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Plus = 260
      * }
      */
     public static int eRENDERDOC_Key_Plus() {
-        return (int)260L;
+        return eRENDERDOC_Key_Plus;
     }
+    private static final int eRENDERDOC_Key_F1 = (int)261L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F1 = 261;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F1 = 261
      * }
      */
     public static int eRENDERDOC_Key_F1() {
-        return (int)261L;
+        return eRENDERDOC_Key_F1;
     }
+    private static final int eRENDERDOC_Key_F2 = (int)262L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F2 = 262;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F2 = 262
      * }
      */
     public static int eRENDERDOC_Key_F2() {
-        return (int)262L;
+        return eRENDERDOC_Key_F2;
     }
+    private static final int eRENDERDOC_Key_F3 = (int)263L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F3 = 263;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F3 = 263
      * }
      */
     public static int eRENDERDOC_Key_F3() {
-        return (int)263L;
+        return eRENDERDOC_Key_F3;
     }
+    private static final int eRENDERDOC_Key_F4 = (int)264L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F4 = 264;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F4 = 264
      * }
      */
     public static int eRENDERDOC_Key_F4() {
-        return (int)264L;
+        return eRENDERDOC_Key_F4;
     }
+    private static final int eRENDERDOC_Key_F5 = (int)265L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F5 = 265;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F5 = 265
      * }
      */
     public static int eRENDERDOC_Key_F5() {
-        return (int)265L;
+        return eRENDERDOC_Key_F5;
     }
+    private static final int eRENDERDOC_Key_F6 = (int)266L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F6 = 266;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F6 = 266
      * }
      */
     public static int eRENDERDOC_Key_F6() {
-        return (int)266L;
+        return eRENDERDOC_Key_F6;
     }
+    private static final int eRENDERDOC_Key_F7 = (int)267L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F7 = 267;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F7 = 267
      * }
      */
     public static int eRENDERDOC_Key_F7() {
-        return (int)267L;
+        return eRENDERDOC_Key_F7;
     }
+    private static final int eRENDERDOC_Key_F8 = (int)268L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F8 = 268;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F8 = 268
      * }
      */
     public static int eRENDERDOC_Key_F8() {
-        return (int)268L;
+        return eRENDERDOC_Key_F8;
     }
+    private static final int eRENDERDOC_Key_F9 = (int)269L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F9 = 269;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F9 = 269
      * }
      */
     public static int eRENDERDOC_Key_F9() {
-        return (int)269L;
+        return eRENDERDOC_Key_F9;
     }
+    private static final int eRENDERDOC_Key_F10 = (int)270L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F10 = 270;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F10 = 270
      * }
      */
     public static int eRENDERDOC_Key_F10() {
-        return (int)270L;
+        return eRENDERDOC_Key_F10;
     }
+    private static final int eRENDERDOC_Key_F11 = (int)271L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F11 = 271;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F11 = 271
      * }
      */
     public static int eRENDERDOC_Key_F11() {
-        return (int)271L;
+        return eRENDERDOC_Key_F11;
     }
+    private static final int eRENDERDOC_Key_F12 = (int)272L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F12 = 272;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_F12 = 272
      * }
      */
     public static int eRENDERDOC_Key_F12() {
-        return (int)272L;
+        return eRENDERDOC_Key_F12;
     }
+    private static final int eRENDERDOC_Key_Home = (int)273L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Home = 273;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Home = 273
      * }
      */
     public static int eRENDERDOC_Key_Home() {
-        return (int)273L;
+        return eRENDERDOC_Key_Home;
     }
+    private static final int eRENDERDOC_Key_End = (int)274L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_End = 274;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_End = 274
      * }
      */
     public static int eRENDERDOC_Key_End() {
-        return (int)274L;
+        return eRENDERDOC_Key_End;
     }
+    private static final int eRENDERDOC_Key_Insert = (int)275L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Insert = 275;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Insert = 275
      * }
      */
     public static int eRENDERDOC_Key_Insert() {
-        return (int)275L;
+        return eRENDERDOC_Key_Insert;
     }
+    private static final int eRENDERDOC_Key_Delete = (int)276L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Delete = 276;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Delete = 276
      * }
      */
     public static int eRENDERDOC_Key_Delete() {
-        return (int)276L;
+        return eRENDERDOC_Key_Delete;
     }
+    private static final int eRENDERDOC_Key_PageUp = (int)277L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_PageUp = 277;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_PageUp = 277
      * }
      */
     public static int eRENDERDOC_Key_PageUp() {
-        return (int)277L;
+        return eRENDERDOC_Key_PageUp;
     }
+    private static final int eRENDERDOC_Key_PageDn = (int)278L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_PageDn = 278;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_PageDn = 278
      * }
      */
     public static int eRENDERDOC_Key_PageDn() {
-        return (int)278L;
+        return eRENDERDOC_Key_PageDn;
     }
+    private static final int eRENDERDOC_Key_Backspace = (int)279L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Backspace = 279;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Backspace = 279
      * }
      */
     public static int eRENDERDOC_Key_Backspace() {
-        return (int)279L;
+        return eRENDERDOC_Key_Backspace;
     }
+    private static final int eRENDERDOC_Key_Tab = (int)280L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Tab = 280;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Tab = 280
      * }
      */
     public static int eRENDERDOC_Key_Tab() {
-        return (int)280L;
+        return eRENDERDOC_Key_Tab;
     }
+    private static final int eRENDERDOC_Key_PrtScrn = (int)281L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_PrtScrn = 281;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_PrtScrn = 281
      * }
      */
     public static int eRENDERDOC_Key_PrtScrn() {
-        return (int)281L;
+        return eRENDERDOC_Key_PrtScrn;
     }
+    private static final int eRENDERDOC_Key_Pause = (int)282L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Pause = 282;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Pause = 282
      * }
      */
     public static int eRENDERDOC_Key_Pause() {
-        return (int)282L;
+        return eRENDERDOC_Key_Pause;
     }
+    private static final int eRENDERDOC_Key_Max = (int)283L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Max = 283;
+     * {@snippet lang=c :
+     * enum RENDERDOC_InputButton.eRENDERDOC_Key_Max = 283
      * }
      */
     public static int eRENDERDOC_Key_Max() {
-        return (int)283L;
+        return eRENDERDOC_Key_Max;
     }
+    private static final int eRENDERDOC_Overlay_Enabled = (int)1L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_Enabled = 1;
+     * {@snippet lang=c :
+     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_Enabled = 1
      * }
      */
     public static int eRENDERDOC_Overlay_Enabled() {
-        return (int)1L;
+        return eRENDERDOC_Overlay_Enabled;
     }
+    private static final int eRENDERDOC_Overlay_FrameRate = (int)2L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_FrameRate = 2;
+     * {@snippet lang=c :
+     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_FrameRate = 2
      * }
      */
     public static int eRENDERDOC_Overlay_FrameRate() {
-        return (int)2L;
+        return eRENDERDOC_Overlay_FrameRate;
     }
+    private static final int eRENDERDOC_Overlay_FrameNumber = (int)4L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_FrameNumber = 4;
+     * {@snippet lang=c :
+     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_FrameNumber = 4
      * }
      */
     public static int eRENDERDOC_Overlay_FrameNumber() {
-        return (int)4L;
+        return eRENDERDOC_Overlay_FrameNumber;
     }
+    private static final int eRENDERDOC_Overlay_CaptureList = (int)8L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_CaptureList = 8;
+     * {@snippet lang=c :
+     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_CaptureList = 8
      * }
      */
     public static int eRENDERDOC_Overlay_CaptureList() {
-        return (int)8L;
+        return eRENDERDOC_Overlay_CaptureList;
     }
+    private static final int eRENDERDOC_Overlay_Default = (int)15L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_Default = 15;
+     * {@snippet lang=c :
+     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_Default = 15
      * }
      */
     public static int eRENDERDOC_Overlay_Default() {
-        return (int)15L;
+        return eRENDERDOC_Overlay_Default;
     }
+    private static final int eRENDERDOC_Overlay_All = (int)134217727L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_All = -1;
+     * {@snippet lang=c :
+     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_All = 134217727
      * }
      */
     public static int eRENDERDOC_Overlay_All() {
-        return (int)-1L;
+        return eRENDERDOC_Overlay_All;
     }
+    private static final int eRENDERDOC_Overlay_None = (int)0L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_None = 0;
+     * {@snippet lang=c :
+     * enum RENDERDOC_OverlayBits.eRENDERDOC_Overlay_None = 0
      * }
      */
     public static int eRENDERDOC_Overlay_None() {
-        return (int)0L;
+        return eRENDERDOC_Overlay_None;
     }
     /**
-     * {@snippet :
-     * typedef void* RENDERDOC_DevicePointer;
+     * {@snippet lang=c :
+     * typedef void *RENDERDOC_DevicePointer
      * }
      */
-    public static final AddressLayout RENDERDOC_DevicePointer = RuntimeHelper.POINTER;
+    public static final AddressLayout RENDERDOC_DevicePointer = renderdoc_app_h.C_POINTER;
     /**
-     * {@snippet :
-     * typedef void* RENDERDOC_WindowHandle;
+     * {@snippet lang=c :
+     * typedef void *RENDERDOC_WindowHandle
      * }
      */
-    public static final AddressLayout RENDERDOC_WindowHandle = RuntimeHelper.POINTER;
+    public static final AddressLayout RENDERDOC_WindowHandle = renderdoc_app_h.C_POINTER;
+    private static final int eRENDERDOC_API_Version_1_0_0 = (int)10000L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_0_0 = 10000;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_0_0 = 10000
      * }
      */
     public static int eRENDERDOC_API_Version_1_0_0() {
-        return (int)10000L;
+        return eRENDERDOC_API_Version_1_0_0;
     }
+    private static final int eRENDERDOC_API_Version_1_0_1 = (int)10001L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_0_1 = 10001;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_0_1 = 10001
      * }
      */
     public static int eRENDERDOC_API_Version_1_0_1() {
-        return (int)10001L;
+        return eRENDERDOC_API_Version_1_0_1;
     }
+    private static final int eRENDERDOC_API_Version_1_0_2 = (int)10002L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_0_2 = 10002;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_0_2 = 10002
      * }
      */
     public static int eRENDERDOC_API_Version_1_0_2() {
-        return (int)10002L;
+        return eRENDERDOC_API_Version_1_0_2;
     }
+    private static final int eRENDERDOC_API_Version_1_1_0 = (int)10100L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_1_0 = 10100;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_1_0 = 10100
      * }
      */
     public static int eRENDERDOC_API_Version_1_1_0() {
-        return (int)10100L;
+        return eRENDERDOC_API_Version_1_1_0;
     }
+    private static final int eRENDERDOC_API_Version_1_1_1 = (int)10101L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_1_1 = 10101;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_1_1 = 10101
      * }
      */
     public static int eRENDERDOC_API_Version_1_1_1() {
-        return (int)10101L;
+        return eRENDERDOC_API_Version_1_1_1;
     }
+    private static final int eRENDERDOC_API_Version_1_1_2 = (int)10102L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_1_2 = 10102;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_1_2 = 10102
      * }
      */
     public static int eRENDERDOC_API_Version_1_1_2() {
-        return (int)10102L;
+        return eRENDERDOC_API_Version_1_1_2;
     }
+    private static final int eRENDERDOC_API_Version_1_2_0 = (int)10200L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_2_0 = 10200;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_2_0 = 10200
      * }
      */
     public static int eRENDERDOC_API_Version_1_2_0() {
-        return (int)10200L;
+        return eRENDERDOC_API_Version_1_2_0;
     }
+    private static final int eRENDERDOC_API_Version_1_3_0 = (int)10300L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_3_0 = 10300;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_3_0 = 10300
      * }
      */
     public static int eRENDERDOC_API_Version_1_3_0() {
-        return (int)10300L;
+        return eRENDERDOC_API_Version_1_3_0;
     }
+    private static final int eRENDERDOC_API_Version_1_4_0 = (int)10400L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_4_0 = 10400;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_4_0 = 10400
      * }
      */
     public static int eRENDERDOC_API_Version_1_4_0() {
-        return (int)10400L;
+        return eRENDERDOC_API_Version_1_4_0;
     }
+    private static final int eRENDERDOC_API_Version_1_4_1 = (int)10401L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_4_1 = 10401;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_4_1 = 10401
      * }
      */
     public static int eRENDERDOC_API_Version_1_4_1() {
-        return (int)10401L;
+        return eRENDERDOC_API_Version_1_4_1;
     }
+    private static final int eRENDERDOC_API_Version_1_4_2 = (int)10402L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_4_2 = 10402;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_4_2 = 10402
      * }
      */
     public static int eRENDERDOC_API_Version_1_4_2() {
-        return (int)10402L;
+        return eRENDERDOC_API_Version_1_4_2;
     }
+    private static final int eRENDERDOC_API_Version_1_5_0 = (int)10500L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_5_0 = 10500;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_5_0 = 10500
      * }
      */
     public static int eRENDERDOC_API_Version_1_5_0() {
-        return (int)10500L;
+        return eRENDERDOC_API_Version_1_5_0;
     }
+    private static final int eRENDERDOC_API_Version_1_6_0 = (int)10600L;
     /**
-     * {@snippet :
-     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_6_0 = 10600;
+     * {@snippet lang=c :
+     * enum RENDERDOC_Version.eRENDERDOC_API_Version_1_6_0 = 10600
      * }
      */
     public static int eRENDERDOC_API_Version_1_6_0() {
-        return (int)10600L;
+        return eRENDERDOC_API_Version_1_6_0;
     }
+    private static final long _POSIX_C_SOURCE = 200809L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define _POSIX_C_SOURCE 200809
      * }
      */
     public static long _POSIX_C_SOURCE() {
-        return 200809L;
+        return _POSIX_C_SOURCE;
     }
+    private static final int __TIMESIZE = (int)64L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __TIMESIZE 64
      * }
      */
     public static int __TIMESIZE() {
-        return (int)64L;
+        return __TIMESIZE;
     }
+    private static final long __STDC_IEC_60559_BFP__ = 201404L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __STDC_IEC_60559_BFP__ 201404
      * }
      */
     public static long __STDC_IEC_60559_BFP__() {
-        return 201404L;
+        return __STDC_IEC_60559_BFP__;
     }
+    private static final long __STDC_IEC_60559_COMPLEX__ = 201404L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __STDC_IEC_60559_COMPLEX__ 201404
      * }
      */
     public static long __STDC_IEC_60559_COMPLEX__() {
-        return 201404L;
+        return __STDC_IEC_60559_COMPLEX__;
     }
+    private static final long __STDC_ISO_10646__ = 201706L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __STDC_ISO_10646__ 201706
      * }
      */
     public static long __STDC_ISO_10646__() {
-        return 201706L;
+        return __STDC_ISO_10646__;
     }
+    private static final int __WCHAR_MAX = (int)2147483647L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __WCHAR_MAX 2147483647
      * }
      */
     public static int __WCHAR_MAX() {
-        return (int)2147483647L;
+        return __WCHAR_MAX;
     }
+    private static final int __WCHAR_MIN = (int)-2147483648L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define __WCHAR_MIN -2147483648
      * }
      */
     public static int __WCHAR_MIN() {
-        return (int)-2147483648L;
+        return __WCHAR_MIN;
     }
+    private static final int INT8_MIN = (int)-128L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT8_MIN -128
      * }
      */
     public static int INT8_MIN() {
-        return (int)-128L;
+        return INT8_MIN;
     }
+    private static final int INT16_MIN = (int)-32768L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT16_MIN -32768
      * }
      */
     public static int INT16_MIN() {
-        return (int)-32768L;
+        return INT16_MIN;
     }
+    private static final int INT32_MIN = (int)-2147483648L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT32_MIN -2147483648
      * }
      */
     public static int INT32_MIN() {
-        return (int)-2147483648L;
+        return INT32_MIN;
     }
+    private static final long INT64_MIN = -9223372036854775808L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT64_MIN -9223372036854775808
      * }
      */
     public static long INT64_MIN() {
-        return -9223372036854775808L;
+        return INT64_MIN;
     }
+    private static final int INT8_MAX = (int)127L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT8_MAX 127
      * }
      */
     public static int INT8_MAX() {
-        return (int)127L;
+        return INT8_MAX;
     }
+    private static final int INT16_MAX = (int)32767L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT16_MAX 32767
      * }
      */
     public static int INT16_MAX() {
-        return (int)32767L;
+        return INT16_MAX;
     }
+    private static final int INT32_MAX = (int)2147483647L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT32_MAX 2147483647
      * }
      */
     public static int INT32_MAX() {
-        return (int)2147483647L;
+        return INT32_MAX;
     }
+    private static final long INT64_MAX = 9223372036854775807L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT64_MAX 9223372036854775807
      * }
      */
     public static long INT64_MAX() {
-        return 9223372036854775807L;
+        return INT64_MAX;
     }
+    private static final int UINT8_MAX = (int)255L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT8_MAX 255
      * }
      */
     public static int UINT8_MAX() {
-        return (int)255L;
+        return UINT8_MAX;
     }
+    private static final int UINT16_MAX = (int)65535L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT16_MAX 65535
      * }
      */
     public static int UINT16_MAX() {
-        return (int)65535L;
+        return UINT16_MAX;
     }
+    private static final int UINT32_MAX = (int)4294967295L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT32_MAX 4294967295
      * }
      */
     public static int UINT32_MAX() {
-        return (int)4294967295L;
+        return UINT32_MAX;
     }
+    private static final long UINT64_MAX = -1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT64_MAX -1
      * }
      */
     public static long UINT64_MAX() {
-        return -1L;
+        return UINT64_MAX;
     }
+    private static final int INT_LEAST8_MIN = (int)-128L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST8_MIN -128
      * }
      */
     public static int INT_LEAST8_MIN() {
-        return (int)-128L;
+        return INT_LEAST8_MIN;
     }
+    private static final int INT_LEAST16_MIN = (int)-32768L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST16_MIN -32768
      * }
      */
     public static int INT_LEAST16_MIN() {
-        return (int)-32768L;
+        return INT_LEAST16_MIN;
     }
+    private static final int INT_LEAST32_MIN = (int)-2147483648L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST32_MIN -2147483648
      * }
      */
     public static int INT_LEAST32_MIN() {
-        return (int)-2147483648L;
+        return INT_LEAST32_MIN;
     }
+    private static final long INT_LEAST64_MIN = -9223372036854775808L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST64_MIN -9223372036854775808
      * }
      */
     public static long INT_LEAST64_MIN() {
-        return -9223372036854775808L;
+        return INT_LEAST64_MIN;
     }
+    private static final int INT_LEAST8_MAX = (int)127L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST8_MAX 127
      * }
      */
     public static int INT_LEAST8_MAX() {
-        return (int)127L;
+        return INT_LEAST8_MAX;
     }
+    private static final int INT_LEAST16_MAX = (int)32767L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST16_MAX 32767
      * }
      */
     public static int INT_LEAST16_MAX() {
-        return (int)32767L;
+        return INT_LEAST16_MAX;
     }
+    private static final int INT_LEAST32_MAX = (int)2147483647L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST32_MAX 2147483647
      * }
      */
     public static int INT_LEAST32_MAX() {
-        return (int)2147483647L;
+        return INT_LEAST32_MAX;
     }
+    private static final long INT_LEAST64_MAX = 9223372036854775807L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_LEAST64_MAX 9223372036854775807
      * }
      */
     public static long INT_LEAST64_MAX() {
-        return 9223372036854775807L;
+        return INT_LEAST64_MAX;
     }
+    private static final int UINT_LEAST8_MAX = (int)255L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_LEAST8_MAX 255
      * }
      */
     public static int UINT_LEAST8_MAX() {
-        return (int)255L;
+        return UINT_LEAST8_MAX;
     }
+    private static final int UINT_LEAST16_MAX = (int)65535L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_LEAST16_MAX 65535
      * }
      */
     public static int UINT_LEAST16_MAX() {
-        return (int)65535L;
+        return UINT_LEAST16_MAX;
     }
+    private static final int UINT_LEAST32_MAX = (int)4294967295L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_LEAST32_MAX 4294967295
      * }
      */
     public static int UINT_LEAST32_MAX() {
-        return (int)4294967295L;
+        return UINT_LEAST32_MAX;
     }
+    private static final long UINT_LEAST64_MAX = -1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_LEAST64_MAX -1
      * }
      */
     public static long UINT_LEAST64_MAX() {
-        return -1L;
+        return UINT_LEAST64_MAX;
     }
+    private static final int INT_FAST8_MIN = (int)-128L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST8_MIN -128
      * }
      */
     public static int INT_FAST8_MIN() {
-        return (int)-128L;
+        return INT_FAST8_MIN;
     }
+    private static final long INT_FAST16_MIN = -9223372036854775808L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST16_MIN -9223372036854775808
      * }
      */
     public static long INT_FAST16_MIN() {
-        return -9223372036854775808L;
+        return INT_FAST16_MIN;
     }
+    private static final long INT_FAST32_MIN = -9223372036854775808L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST32_MIN -9223372036854775808
      * }
      */
     public static long INT_FAST32_MIN() {
-        return -9223372036854775808L;
+        return INT_FAST32_MIN;
     }
+    private static final long INT_FAST64_MIN = -9223372036854775808L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST64_MIN -9223372036854775808
      * }
      */
     public static long INT_FAST64_MIN() {
-        return -9223372036854775808L;
+        return INT_FAST64_MIN;
     }
+    private static final int INT_FAST8_MAX = (int)127L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST8_MAX 127
      * }
      */
     public static int INT_FAST8_MAX() {
-        return (int)127L;
+        return INT_FAST8_MAX;
     }
+    private static final long INT_FAST16_MAX = 9223372036854775807L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST16_MAX 9223372036854775807
      * }
      */
     public static long INT_FAST16_MAX() {
-        return 9223372036854775807L;
+        return INT_FAST16_MAX;
     }
+    private static final long INT_FAST32_MAX = 9223372036854775807L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST32_MAX 9223372036854775807
      * }
      */
     public static long INT_FAST32_MAX() {
-        return 9223372036854775807L;
+        return INT_FAST32_MAX;
     }
+    private static final long INT_FAST64_MAX = 9223372036854775807L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INT_FAST64_MAX 9223372036854775807
      * }
      */
     public static long INT_FAST64_MAX() {
-        return 9223372036854775807L;
+        return INT_FAST64_MAX;
     }
+    private static final int UINT_FAST8_MAX = (int)255L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_FAST8_MAX 255
      * }
      */
     public static int UINT_FAST8_MAX() {
-        return (int)255L;
+        return UINT_FAST8_MAX;
     }
+    private static final long UINT_FAST16_MAX = -1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_FAST16_MAX -1
      * }
      */
     public static long UINT_FAST16_MAX() {
-        return -1L;
+        return UINT_FAST16_MAX;
     }
+    private static final long UINT_FAST32_MAX = -1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_FAST32_MAX -1
      * }
      */
     public static long UINT_FAST32_MAX() {
-        return -1L;
+        return UINT_FAST32_MAX;
     }
+    private static final long UINT_FAST64_MAX = -1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINT_FAST64_MAX -1
      * }
      */
     public static long UINT_FAST64_MAX() {
-        return -1L;
+        return UINT_FAST64_MAX;
     }
+    private static final long INTPTR_MIN = -9223372036854775808L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INTPTR_MIN -9223372036854775808
      * }
      */
     public static long INTPTR_MIN() {
-        return -9223372036854775808L;
+        return INTPTR_MIN;
     }
+    private static final long INTPTR_MAX = 9223372036854775807L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INTPTR_MAX 9223372036854775807
      * }
      */
     public static long INTPTR_MAX() {
-        return 9223372036854775807L;
+        return INTPTR_MAX;
     }
+    private static final long UINTPTR_MAX = -1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINTPTR_MAX -1
      * }
      */
     public static long UINTPTR_MAX() {
-        return -1L;
+        return UINTPTR_MAX;
     }
+    private static final long INTMAX_MIN = -9223372036854775808L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INTMAX_MIN -9223372036854775808
      * }
      */
     public static long INTMAX_MIN() {
-        return -9223372036854775808L;
+        return INTMAX_MIN;
     }
+    private static final long INTMAX_MAX = 9223372036854775807L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define INTMAX_MAX 9223372036854775807
      * }
      */
     public static long INTMAX_MAX() {
-        return 9223372036854775807L;
+        return INTMAX_MAX;
     }
+    private static final long UINTMAX_MAX = -1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define UINTMAX_MAX -1
      * }
      */
     public static long UINTMAX_MAX() {
-        return -1L;
+        return UINTMAX_MAX;
     }
+    private static final long PTRDIFF_MIN = -9223372036854775808L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define PTRDIFF_MIN -9223372036854775808
      * }
      */
     public static long PTRDIFF_MIN() {
-        return -9223372036854775808L;
+        return PTRDIFF_MIN;
     }
+    private static final long PTRDIFF_MAX = 9223372036854775807L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define PTRDIFF_MAX 9223372036854775807
      * }
      */
     public static long PTRDIFF_MAX() {
-        return 9223372036854775807L;
+        return PTRDIFF_MAX;
     }
+    private static final int SIG_ATOMIC_MIN = (int)-2147483648L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define SIG_ATOMIC_MIN -2147483648
      * }
      */
     public static int SIG_ATOMIC_MIN() {
-        return (int)-2147483648L;
+        return SIG_ATOMIC_MIN;
     }
+    private static final int SIG_ATOMIC_MAX = (int)2147483647L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define SIG_ATOMIC_MAX 2147483647
      * }
      */
     public static int SIG_ATOMIC_MAX() {
-        return (int)2147483647L;
+        return SIG_ATOMIC_MAX;
     }
+    private static final long SIZE_MAX = -1L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define SIZE_MAX -1
      * }
      */
     public static long SIZE_MAX() {
-        return -1L;
+        return SIZE_MAX;
     }
+    private static final int WCHAR_MIN = (int)-2147483648L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define WCHAR_MIN -2147483648
      * }
      */
     public static int WCHAR_MIN() {
-        return (int)-2147483648L;
+        return WCHAR_MIN;
     }
+    private static final int WCHAR_MAX = (int)2147483647L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define WCHAR_MAX 2147483647
      * }
      */
     public static int WCHAR_MAX() {
-        return (int)2147483647L;
+        return WCHAR_MAX;
     }
+    private static final int WINT_MIN = (int)0L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define WINT_MIN 0
      * }
      */
     public static int WINT_MIN() {
-        return (int)0L;
+        return WINT_MIN;
     }
+    private static final int WINT_MAX = (int)4294967295L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define WINT_MAX 4294967295
      * }
      */
     public static int WINT_MAX() {
-        return (int)4294967295L;
+        return WINT_MAX;
     }
+    private static final long RENDERDOC_ShaderDebugMagicValue_truncated = 5216688378538513696L;
     /**
-     * {@snippet :
+     * {@snippet lang=c :
      * #define RENDERDOC_ShaderDebugMagicValue_truncated 5216688378538513696
      * }
      */
     public static long RENDERDOC_ShaderDebugMagicValue_truncated() {
-        return 5216688378538513696L;
+        return RENDERDOC_ShaderDebugMagicValue_truncated;
     }
 }
-
 
