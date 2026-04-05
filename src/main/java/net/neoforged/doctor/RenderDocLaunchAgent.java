@@ -89,9 +89,10 @@ public class RenderDocLaunchAgent {
                 System.err.println("Failed to load the 1.6 version of RenderDoc. Please update RenderDoc.");
                 System.exit(150);
             }
+            MemorySegment api_1_6_0 = api_1_6_0_addr.get(ValueLayout.ADDRESS, 0);
 
             // Launch the replay UI
-            MemorySegment LaunchReplayUI_addr = RENDERDOC_API_1_6_0.LaunchReplayUI(api_1_6_0_addr);
+            MemorySegment LaunchReplayUI_addr = RENDERDOC_API_1_6_0.LaunchReplayUI(api_1_6_0);
             final int replayUiPid = pRENDERDOC_LaunchReplayUI.invoke(LaunchReplayUI_addr, 1, MemorySegment.NULL);
             if (replayUiPid == 0) {
                 System.err.println("Failed to start RenderDoc replay UI.");
