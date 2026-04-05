@@ -1,6 +1,8 @@
 ### RenderNurse
 > A simple bootstrap utility to start renderdoc in a java application.
 ---
+RenderNurse requires **Java 25** to work. 
+
 ### Usage
 Add the published artifact:
 ```
