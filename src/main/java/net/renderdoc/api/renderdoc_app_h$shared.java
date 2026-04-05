@@ -27,7 +27,12 @@ public class renderdoc_app_h$shared {
     public static final ValueLayout.OfDouble C_DOUBLE = (ValueLayout.OfDouble) Linker.nativeLinker().canonicalLayouts().get("double");
     public static final AddressLayout C_POINTER = ((AddressLayout) Linker.nativeLinker().canonicalLayouts().get("void*"))
             .withTargetLayout(MemoryLayout.sequenceLayout(java.lang.Long.MAX_VALUE, C_CHAR));
-    public static final ValueLayout.OfLong C_LONG = (ValueLayout.OfLong) Linker.nativeLinker().canonicalLayouts().get("long");
+    // jextract does not produce portable code (see https://mail.openjdk.org/pipermail/jextract-dev/2026-January/002448.html).
+    // Its output depends on whether it's running on Windows (where C long is 4 bytes) versus elsewhere like Linux (where
+    // C long is 8 bytes).
+    // Because none of what we use the RenderDoc API for uses this anyway, we comment this part out and all the parts
+    // that depend on it in renderdoc_app_h.
+//    public static final ValueLayout.OfLong C_LONG = (ValueLayout.OfLong) Linker.nativeLinker().canonicalLayouts().get("long");
 
     static final boolean TRACE_DOWNCALLS = Boolean.getBoolean("jextract.trace.downcalls");
 
