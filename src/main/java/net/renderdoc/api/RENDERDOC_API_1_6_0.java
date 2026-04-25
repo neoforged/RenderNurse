@@ -2,13 +2,18 @@
 
 package net.renderdoc.api;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
 /**
- * {@snippet :
+ * {@snippet lang=c :
  * struct RENDERDOC_API_1_6_0 {
  *     pRENDERDOC_GetAPIVersion GetAPIVersion;
  *     pRENDERDOC_SetCaptureOptionU32 SetCaptureOptionU32;
@@ -49,950 +54,1470 @@ import static java.lang.foreign.ValueLayout.*;
  *     pRENDERDOC_DiscardFrameCapture DiscardFrameCapture;
  *     pRENDERDOC_ShowReplayUI ShowReplayUI;
  *     pRENDERDOC_SetCaptureTitle SetCaptureTitle;
- * };
+ * }
  * }
  */
 public class RENDERDOC_API_1_6_0 {
 
-    public static MemoryLayout $LAYOUT() {
-        return constants$10.const$4;
+    RENDERDOC_API_1_6_0() {
+        // Should not be called directly
     }
-    public static VarHandle GetAPIVersion$VH() {
-        return constants$10.const$5;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_GetAPIVersion GetAPIVersion;
-     * }
-     */
-    public static MemorySegment GetAPIVersion$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$10.const$5.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_GetAPIVersion GetAPIVersion;
-     * }
-     */
-    public static void GetAPIVersion$set(MemorySegment seg, MemorySegment x) {
-        constants$10.const$5.set(seg, x);
-    }
-    public static MemorySegment GetAPIVersion$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$10.const$5.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetAPIVersion$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$10.const$5.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_GetAPIVersion GetAPIVersion(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_GetAPIVersion.ofAddress(GetAPIVersion$get(segment), scope);
-    }
-    public static VarHandle SetCaptureOptionU32$VH() {
-        return constants$11.const$0;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureOptionU32 SetCaptureOptionU32;
-     * }
-     */
-    public static MemorySegment SetCaptureOptionU32$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$0.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureOptionU32 SetCaptureOptionU32;
-     * }
-     */
-    public static void SetCaptureOptionU32$set(MemorySegment seg, MemorySegment x) {
-        constants$11.const$0.set(seg, x);
-    }
-    public static MemorySegment SetCaptureOptionU32$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$0.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetCaptureOptionU32$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$11.const$0.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_SetCaptureOptionU32 SetCaptureOptionU32(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_SetCaptureOptionU32.ofAddress(SetCaptureOptionU32$get(segment), scope);
-    }
-    public static VarHandle SetCaptureOptionF32$VH() {
-        return constants$11.const$1;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureOptionF32 SetCaptureOptionF32;
-     * }
-     */
-    public static MemorySegment SetCaptureOptionF32$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$1.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureOptionF32 SetCaptureOptionF32;
-     * }
-     */
-    public static void SetCaptureOptionF32$set(MemorySegment seg, MemorySegment x) {
-        constants$11.const$1.set(seg, x);
-    }
-    public static MemorySegment SetCaptureOptionF32$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$1.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetCaptureOptionF32$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$11.const$1.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_SetCaptureOptionF32 SetCaptureOptionF32(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_SetCaptureOptionF32.ofAddress(SetCaptureOptionF32$get(segment), scope);
-    }
-    public static VarHandle GetCaptureOptionU32$VH() {
-        return constants$11.const$2;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_GetCaptureOptionU32 GetCaptureOptionU32;
-     * }
-     */
-    public static MemorySegment GetCaptureOptionU32$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$2.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_GetCaptureOptionU32 GetCaptureOptionU32;
-     * }
-     */
-    public static void GetCaptureOptionU32$set(MemorySegment seg, MemorySegment x) {
-        constants$11.const$2.set(seg, x);
-    }
-    public static MemorySegment GetCaptureOptionU32$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$2.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetCaptureOptionU32$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$11.const$2.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_GetCaptureOptionU32 GetCaptureOptionU32(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_GetCaptureOptionU32.ofAddress(GetCaptureOptionU32$get(segment), scope);
-    }
-    public static VarHandle GetCaptureOptionF32$VH() {
-        return constants$11.const$3;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_GetCaptureOptionF32 GetCaptureOptionF32;
-     * }
-     */
-    public static MemorySegment GetCaptureOptionF32$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$3.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_GetCaptureOptionF32 GetCaptureOptionF32;
-     * }
-     */
-    public static void GetCaptureOptionF32$set(MemorySegment seg, MemorySegment x) {
-        constants$11.const$3.set(seg, x);
-    }
-    public static MemorySegment GetCaptureOptionF32$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$3.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetCaptureOptionF32$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$11.const$3.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_GetCaptureOptionF32 GetCaptureOptionF32(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_GetCaptureOptionF32.ofAddress(GetCaptureOptionF32$get(segment), scope);
-    }
-    public static VarHandle SetFocusToggleKeys$VH() {
-        return constants$11.const$4;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_SetFocusToggleKeys SetFocusToggleKeys;
-     * }
-     */
-    public static MemorySegment SetFocusToggleKeys$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$4.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_SetFocusToggleKeys SetFocusToggleKeys;
-     * }
-     */
-    public static void SetFocusToggleKeys$set(MemorySegment seg, MemorySegment x) {
-        constants$11.const$4.set(seg, x);
-    }
-    public static MemorySegment SetFocusToggleKeys$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$4.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetFocusToggleKeys$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$11.const$4.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_SetFocusToggleKeys SetFocusToggleKeys(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_SetFocusToggleKeys.ofAddress(SetFocusToggleKeys$get(segment), scope);
-    }
-    public static VarHandle SetCaptureKeys$VH() {
-        return constants$11.const$5;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureKeys SetCaptureKeys;
-     * }
-     */
-    public static MemorySegment SetCaptureKeys$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$5.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureKeys SetCaptureKeys;
-     * }
-     */
-    public static void SetCaptureKeys$set(MemorySegment seg, MemorySegment x) {
-        constants$11.const$5.set(seg, x);
-    }
-    public static MemorySegment SetCaptureKeys$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$11.const$5.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetCaptureKeys$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$11.const$5.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_SetCaptureKeys SetCaptureKeys(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_SetCaptureKeys.ofAddress(SetCaptureKeys$get(segment), scope);
-    }
-    public static VarHandle GetOverlayBits$VH() {
-        return constants$12.const$0;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_GetOverlayBits GetOverlayBits;
-     * }
-     */
-    public static MemorySegment GetOverlayBits$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$0.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_GetOverlayBits GetOverlayBits;
-     * }
-     */
-    public static void GetOverlayBits$set(MemorySegment seg, MemorySegment x) {
-        constants$12.const$0.set(seg, x);
-    }
-    public static MemorySegment GetOverlayBits$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$0.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetOverlayBits$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$12.const$0.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_GetOverlayBits GetOverlayBits(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_GetOverlayBits.ofAddress(GetOverlayBits$get(segment), scope);
-    }
-    public static VarHandle MaskOverlayBits$VH() {
-        return constants$12.const$1;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_MaskOverlayBits MaskOverlayBits;
-     * }
-     */
-    public static MemorySegment MaskOverlayBits$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$1.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_MaskOverlayBits MaskOverlayBits;
-     * }
-     */
-    public static void MaskOverlayBits$set(MemorySegment seg, MemorySegment x) {
-        constants$12.const$1.set(seg, x);
-    }
-    public static MemorySegment MaskOverlayBits$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$1.get(seg.asSlice(index*sizeof()));
-    }
-    public static void MaskOverlayBits$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$12.const$1.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_MaskOverlayBits MaskOverlayBits(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_MaskOverlayBits.ofAddress(MaskOverlayBits$get(segment), scope);
-    }
-    public static VarHandle Shutdown$VH() {
-        return constants$12.const$2;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_Shutdown Shutdown;
-     * }
-     */
-    public static MemorySegment Shutdown$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$2.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_Shutdown Shutdown;
-     * }
-     */
-    public static void Shutdown$set(MemorySegment seg, MemorySegment x) {
-        constants$12.const$2.set(seg, x);
-    }
-    public static MemorySegment Shutdown$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$2.get(seg.asSlice(index*sizeof()));
-    }
-    public static void Shutdown$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$12.const$2.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_Shutdown Shutdown(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_Shutdown.ofAddress(Shutdown$get(segment), scope);
-    }
-    public static VarHandle RemoveHooks$VH() {
-        return constants$12.const$3;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_RemoveHooks RemoveHooks;
-     * }
-     */
-    public static MemorySegment RemoveHooks$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$3.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_RemoveHooks RemoveHooks;
-     * }
-     */
-    public static void RemoveHooks$set(MemorySegment seg, MemorySegment x) {
-        constants$12.const$3.set(seg, x);
-    }
-    public static MemorySegment RemoveHooks$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$3.get(seg.asSlice(index*sizeof()));
-    }
-    public static void RemoveHooks$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$12.const$3.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_RemoveHooks RemoveHooks(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_RemoveHooks.ofAddress(RemoveHooks$get(segment), scope);
-    }
-    public static VarHandle UnloadCrashHandler$VH() {
-        return constants$12.const$4;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_UnloadCrashHandler UnloadCrashHandler;
-     * }
-     */
-    public static MemorySegment UnloadCrashHandler$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$4.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_UnloadCrashHandler UnloadCrashHandler;
-     * }
-     */
-    public static void UnloadCrashHandler$set(MemorySegment seg, MemorySegment x) {
-        constants$12.const$4.set(seg, x);
-    }
-    public static MemorySegment UnloadCrashHandler$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$4.get(seg.asSlice(index*sizeof()));
-    }
-    public static void UnloadCrashHandler$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$12.const$4.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_UnloadCrashHandler UnloadCrashHandler(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_UnloadCrashHandler.ofAddress(UnloadCrashHandler$get(segment), scope);
-    }
-    public static VarHandle SetLogFilePathTemplate$VH() {
-        return constants$12.const$5;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_SetLogFilePathTemplate SetLogFilePathTemplate;
-     * }
-     */
-    public static MemorySegment SetLogFilePathTemplate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$5.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_SetLogFilePathTemplate SetLogFilePathTemplate;
-     * }
-     */
-    public static void SetLogFilePathTemplate$set(MemorySegment seg, MemorySegment x) {
-        constants$12.const$5.set(seg, x);
-    }
-    public static MemorySegment SetLogFilePathTemplate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$12.const$5.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetLogFilePathTemplate$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$12.const$5.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_SetLogFilePathTemplate SetLogFilePathTemplate(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_SetLogFilePathTemplate.ofAddress(SetLogFilePathTemplate$get(segment), scope);
-    }
-    public static VarHandle SetCaptureFilePathTemplate$VH() {
-        return constants$13.const$0;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureFilePathTemplate SetCaptureFilePathTemplate;
-     * }
-     */
-    public static MemorySegment SetCaptureFilePathTemplate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$0.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureFilePathTemplate SetCaptureFilePathTemplate;
-     * }
-     */
-    public static void SetCaptureFilePathTemplate$set(MemorySegment seg, MemorySegment x) {
-        constants$13.const$0.set(seg, x);
-    }
-    public static MemorySegment SetCaptureFilePathTemplate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$0.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetCaptureFilePathTemplate$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$13.const$0.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_SetCaptureFilePathTemplate SetCaptureFilePathTemplate(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_SetCaptureFilePathTemplate.ofAddress(SetCaptureFilePathTemplate$get(segment), scope);
-    }
-    public static VarHandle GetLogFilePathTemplate$VH() {
-        return constants$13.const$1;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_GetLogFilePathTemplate GetLogFilePathTemplate;
-     * }
-     */
-    public static MemorySegment GetLogFilePathTemplate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$1.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_GetLogFilePathTemplate GetLogFilePathTemplate;
-     * }
-     */
-    public static void GetLogFilePathTemplate$set(MemorySegment seg, MemorySegment x) {
-        constants$13.const$1.set(seg, x);
-    }
-    public static MemorySegment GetLogFilePathTemplate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$1.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetLogFilePathTemplate$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$13.const$1.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_GetLogFilePathTemplate GetLogFilePathTemplate(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_GetLogFilePathTemplate.ofAddress(GetLogFilePathTemplate$get(segment), scope);
-    }
-    public static VarHandle GetCaptureFilePathTemplate$VH() {
-        return constants$13.const$2;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_GetCaptureFilePathTemplate GetCaptureFilePathTemplate;
-     * }
-     */
-    public static MemorySegment GetCaptureFilePathTemplate$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$2.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_GetCaptureFilePathTemplate GetCaptureFilePathTemplate;
-     * }
-     */
-    public static void GetCaptureFilePathTemplate$set(MemorySegment seg, MemorySegment x) {
-        constants$13.const$2.set(seg, x);
-    }
-    public static MemorySegment GetCaptureFilePathTemplate$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$2.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetCaptureFilePathTemplate$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$13.const$2.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_GetCaptureFilePathTemplate GetCaptureFilePathTemplate(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_GetCaptureFilePathTemplate.ofAddress(GetCaptureFilePathTemplate$get(segment), scope);
-    }
-    public static VarHandle GetNumCaptures$VH() {
-        return constants$13.const$3;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_GetNumCaptures GetNumCaptures;
-     * }
-     */
-    public static MemorySegment GetNumCaptures$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$3.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_GetNumCaptures GetNumCaptures;
-     * }
-     */
-    public static void GetNumCaptures$set(MemorySegment seg, MemorySegment x) {
-        constants$13.const$3.set(seg, x);
-    }
-    public static MemorySegment GetNumCaptures$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$3.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetNumCaptures$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$13.const$3.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_GetNumCaptures GetNumCaptures(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_GetNumCaptures.ofAddress(GetNumCaptures$get(segment), scope);
-    }
-    public static VarHandle GetCapture$VH() {
-        return constants$13.const$4;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_GetCapture GetCapture;
-     * }
-     */
-    public static MemorySegment GetCapture$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$4.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_GetCapture GetCapture;
-     * }
-     */
-    public static void GetCapture$set(MemorySegment seg, MemorySegment x) {
-        constants$13.const$4.set(seg, x);
-    }
-    public static MemorySegment GetCapture$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$4.get(seg.asSlice(index*sizeof()));
-    }
-    public static void GetCapture$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$13.const$4.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_GetCapture GetCapture(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_GetCapture.ofAddress(GetCapture$get(segment), scope);
-    }
-    public static VarHandle TriggerCapture$VH() {
-        return constants$13.const$5;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_TriggerCapture TriggerCapture;
-     * }
-     */
-    public static MemorySegment TriggerCapture$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$5.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_TriggerCapture TriggerCapture;
-     * }
-     */
-    public static void TriggerCapture$set(MemorySegment seg, MemorySegment x) {
-        constants$13.const$5.set(seg, x);
-    }
-    public static MemorySegment TriggerCapture$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$13.const$5.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TriggerCapture$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$13.const$5.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_TriggerCapture TriggerCapture(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_TriggerCapture.ofAddress(TriggerCapture$get(segment), scope);
-    }
-    public static VarHandle IsRemoteAccessConnected$VH() {
-        return constants$14.const$0;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_IsRemoteAccessConnected IsRemoteAccessConnected;
-     * }
-     */
-    public static MemorySegment IsRemoteAccessConnected$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$0.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_IsRemoteAccessConnected IsRemoteAccessConnected;
-     * }
-     */
-    public static void IsRemoteAccessConnected$set(MemorySegment seg, MemorySegment x) {
-        constants$14.const$0.set(seg, x);
-    }
-    public static MemorySegment IsRemoteAccessConnected$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$0.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsRemoteAccessConnected$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$14.const$0.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_IsRemoteAccessConnected IsRemoteAccessConnected(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_IsRemoteAccessConnected.ofAddress(IsRemoteAccessConnected$get(segment), scope);
-    }
-    public static VarHandle IsTargetControlConnected$VH() {
-        return constants$14.const$1;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_IsTargetControlConnected IsTargetControlConnected;
-     * }
-     */
-    public static MemorySegment IsTargetControlConnected$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$1.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_IsTargetControlConnected IsTargetControlConnected;
-     * }
-     */
-    public static void IsTargetControlConnected$set(MemorySegment seg, MemorySegment x) {
-        constants$14.const$1.set(seg, x);
-    }
-    public static MemorySegment IsTargetControlConnected$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$1.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsTargetControlConnected$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$14.const$1.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_IsTargetControlConnected IsTargetControlConnected(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_IsTargetControlConnected.ofAddress(IsTargetControlConnected$get(segment), scope);
-    }
-    public static VarHandle LaunchReplayUI$VH() {
-        return constants$14.const$2;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_LaunchReplayUI LaunchReplayUI;
-     * }
-     */
-    public static MemorySegment LaunchReplayUI$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$2.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_LaunchReplayUI LaunchReplayUI;
-     * }
-     */
-    public static void LaunchReplayUI$set(MemorySegment seg, MemorySegment x) {
-        constants$14.const$2.set(seg, x);
-    }
-    public static MemorySegment LaunchReplayUI$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$2.get(seg.asSlice(index*sizeof()));
-    }
-    public static void LaunchReplayUI$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$14.const$2.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_LaunchReplayUI LaunchReplayUI(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_LaunchReplayUI.ofAddress(LaunchReplayUI$get(segment), scope);
-    }
-    public static VarHandle SetActiveWindow$VH() {
-        return constants$14.const$3;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_SetActiveWindow SetActiveWindow;
-     * }
-     */
-    public static MemorySegment SetActiveWindow$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$3.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_SetActiveWindow SetActiveWindow;
-     * }
-     */
-    public static void SetActiveWindow$set(MemorySegment seg, MemorySegment x) {
-        constants$14.const$3.set(seg, x);
-    }
-    public static MemorySegment SetActiveWindow$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$3.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetActiveWindow$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$14.const$3.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_SetActiveWindow SetActiveWindow(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_SetActiveWindow.ofAddress(SetActiveWindow$get(segment), scope);
-    }
-    public static VarHandle StartFrameCapture$VH() {
-        return constants$14.const$4;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_StartFrameCapture StartFrameCapture;
-     * }
-     */
-    public static MemorySegment StartFrameCapture$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$4.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_StartFrameCapture StartFrameCapture;
-     * }
-     */
-    public static void StartFrameCapture$set(MemorySegment seg, MemorySegment x) {
-        constants$14.const$4.set(seg, x);
-    }
-    public static MemorySegment StartFrameCapture$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$4.get(seg.asSlice(index*sizeof()));
-    }
-    public static void StartFrameCapture$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$14.const$4.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_StartFrameCapture StartFrameCapture(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_StartFrameCapture.ofAddress(StartFrameCapture$get(segment), scope);
-    }
-    public static VarHandle IsFrameCapturing$VH() {
-        return constants$14.const$5;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_IsFrameCapturing IsFrameCapturing;
-     * }
-     */
-    public static MemorySegment IsFrameCapturing$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$5.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_IsFrameCapturing IsFrameCapturing;
-     * }
-     */
-    public static void IsFrameCapturing$set(MemorySegment seg, MemorySegment x) {
-        constants$14.const$5.set(seg, x);
-    }
-    public static MemorySegment IsFrameCapturing$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$14.const$5.get(seg.asSlice(index*sizeof()));
-    }
-    public static void IsFrameCapturing$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$14.const$5.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_IsFrameCapturing IsFrameCapturing(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_IsFrameCapturing.ofAddress(IsFrameCapturing$get(segment), scope);
-    }
-    public static VarHandle EndFrameCapture$VH() {
-        return constants$15.const$0;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_EndFrameCapture EndFrameCapture;
-     * }
-     */
-    public static MemorySegment EndFrameCapture$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$0.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_EndFrameCapture EndFrameCapture;
-     * }
-     */
-    public static void EndFrameCapture$set(MemorySegment seg, MemorySegment x) {
-        constants$15.const$0.set(seg, x);
-    }
-    public static MemorySegment EndFrameCapture$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$0.get(seg.asSlice(index*sizeof()));
-    }
-    public static void EndFrameCapture$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$15.const$0.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_EndFrameCapture EndFrameCapture(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_EndFrameCapture.ofAddress(EndFrameCapture$get(segment), scope);
-    }
-    public static VarHandle TriggerMultiFrameCapture$VH() {
-        return constants$15.const$1;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_TriggerMultiFrameCapture TriggerMultiFrameCapture;
-     * }
-     */
-    public static MemorySegment TriggerMultiFrameCapture$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$1.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_TriggerMultiFrameCapture TriggerMultiFrameCapture;
-     * }
-     */
-    public static void TriggerMultiFrameCapture$set(MemorySegment seg, MemorySegment x) {
-        constants$15.const$1.set(seg, x);
-    }
-    public static MemorySegment TriggerMultiFrameCapture$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$1.get(seg.asSlice(index*sizeof()));
-    }
-    public static void TriggerMultiFrameCapture$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$15.const$1.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_TriggerMultiFrameCapture TriggerMultiFrameCapture(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_TriggerMultiFrameCapture.ofAddress(TriggerMultiFrameCapture$get(segment), scope);
-    }
-    public static VarHandle SetCaptureFileComments$VH() {
-        return constants$15.const$2;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureFileComments SetCaptureFileComments;
-     * }
-     */
-    public static MemorySegment SetCaptureFileComments$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$2.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureFileComments SetCaptureFileComments;
-     * }
-     */
-    public static void SetCaptureFileComments$set(MemorySegment seg, MemorySegment x) {
-        constants$15.const$2.set(seg, x);
-    }
-    public static MemorySegment SetCaptureFileComments$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$2.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetCaptureFileComments$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$15.const$2.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_SetCaptureFileComments SetCaptureFileComments(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_SetCaptureFileComments.ofAddress(SetCaptureFileComments$get(segment), scope);
-    }
-    public static VarHandle DiscardFrameCapture$VH() {
-        return constants$15.const$3;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_DiscardFrameCapture DiscardFrameCapture;
-     * }
-     */
-    public static MemorySegment DiscardFrameCapture$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$3.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_DiscardFrameCapture DiscardFrameCapture;
-     * }
-     */
-    public static void DiscardFrameCapture$set(MemorySegment seg, MemorySegment x) {
-        constants$15.const$3.set(seg, x);
-    }
-    public static MemorySegment DiscardFrameCapture$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$3.get(seg.asSlice(index*sizeof()));
-    }
-    public static void DiscardFrameCapture$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$15.const$3.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_DiscardFrameCapture DiscardFrameCapture(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_DiscardFrameCapture.ofAddress(DiscardFrameCapture$get(segment), scope);
-    }
-    public static VarHandle ShowReplayUI$VH() {
-        return constants$15.const$4;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_ShowReplayUI ShowReplayUI;
-     * }
-     */
-    public static MemorySegment ShowReplayUI$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$4.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_ShowReplayUI ShowReplayUI;
-     * }
-     */
-    public static void ShowReplayUI$set(MemorySegment seg, MemorySegment x) {
-        constants$15.const$4.set(seg, x);
-    }
-    public static MemorySegment ShowReplayUI$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$4.get(seg.asSlice(index*sizeof()));
-    }
-    public static void ShowReplayUI$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$15.const$4.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_ShowReplayUI ShowReplayUI(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_ShowReplayUI.ofAddress(ShowReplayUI$get(segment), scope);
-    }
-    public static VarHandle SetCaptureTitle$VH() {
-        return constants$15.const$5;
-    }
-    /**
-     * Getter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureTitle SetCaptureTitle;
-     * }
-     */
-    public static MemorySegment SetCaptureTitle$get(MemorySegment seg) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$5.get(seg);
-    }
-    /**
-     * Setter for field:
-     * {@snippet :
-     * pRENDERDOC_SetCaptureTitle SetCaptureTitle;
-     * }
-     */
-    public static void SetCaptureTitle$set(MemorySegment seg, MemorySegment x) {
-        constants$15.const$5.set(seg, x);
-    }
-    public static MemorySegment SetCaptureTitle$get(MemorySegment seg, long index) {
-        return (java.lang.foreign.MemorySegment)constants$15.const$5.get(seg.asSlice(index*sizeof()));
-    }
-    public static void SetCaptureTitle$set(MemorySegment seg, long index, MemorySegment x) {
-        constants$15.const$5.set(seg.asSlice(index*sizeof()), x);
-    }
-    public static pRENDERDOC_SetCaptureTitle SetCaptureTitle(MemorySegment segment, Arena scope) {
-        return pRENDERDOC_SetCaptureTitle.ofAddress(SetCaptureTitle$get(segment), scope);
-    }
-    public static long sizeof() { return $LAYOUT().byteSize(); }
-    public static MemorySegment allocate(SegmentAllocator allocator) { return allocator.allocate($LAYOUT()); }
-    public static MemorySegment allocateArray(long len, SegmentAllocator allocator) {
-        return allocator.allocate(MemoryLayout.sequenceLayout(len, $LAYOUT()));
-    }
-    public static MemorySegment ofAddress(MemorySegment addr, Arena arena) { return RuntimeHelper.asArray(addr, $LAYOUT(), 1, arena); }
-}
 
+    private static final GroupLayout $LAYOUT = MemoryLayout.structLayout(
+        renderdoc_app_h.C_POINTER.withName("GetAPIVersion"),
+        renderdoc_app_h.C_POINTER.withName("SetCaptureOptionU32"),
+        renderdoc_app_h.C_POINTER.withName("SetCaptureOptionF32"),
+        renderdoc_app_h.C_POINTER.withName("GetCaptureOptionU32"),
+        renderdoc_app_h.C_POINTER.withName("GetCaptureOptionF32"),
+        renderdoc_app_h.C_POINTER.withName("SetFocusToggleKeys"),
+        renderdoc_app_h.C_POINTER.withName("SetCaptureKeys"),
+        renderdoc_app_h.C_POINTER.withName("GetOverlayBits"),
+        renderdoc_app_h.C_POINTER.withName("MaskOverlayBits"),
+        MemoryLayout.unionLayout(
+            renderdoc_app_h.C_POINTER.withName("Shutdown"),
+            renderdoc_app_h.C_POINTER.withName("RemoveHooks")
+        ).withName("$anon$640:3"),
+        renderdoc_app_h.C_POINTER.withName("UnloadCrashHandler"),
+        MemoryLayout.unionLayout(
+            renderdoc_app_h.C_POINTER.withName("SetLogFilePathTemplate"),
+            renderdoc_app_h.C_POINTER.withName("SetCaptureFilePathTemplate")
+        ).withName("$anon$649:3"),
+        MemoryLayout.unionLayout(
+            renderdoc_app_h.C_POINTER.withName("GetLogFilePathTemplate"),
+            renderdoc_app_h.C_POINTER.withName("GetCaptureFilePathTemplate")
+        ).withName("$anon$656:3"),
+        renderdoc_app_h.C_POINTER.withName("GetNumCaptures"),
+        renderdoc_app_h.C_POINTER.withName("GetCapture"),
+        renderdoc_app_h.C_POINTER.withName("TriggerCapture"),
+        MemoryLayout.unionLayout(
+            renderdoc_app_h.C_POINTER.withName("IsRemoteAccessConnected"),
+            renderdoc_app_h.C_POINTER.withName("IsTargetControlConnected")
+        ).withName("$anon$671:3"),
+        renderdoc_app_h.C_POINTER.withName("LaunchReplayUI"),
+        renderdoc_app_h.C_POINTER.withName("SetActiveWindow"),
+        renderdoc_app_h.C_POINTER.withName("StartFrameCapture"),
+        renderdoc_app_h.C_POINTER.withName("IsFrameCapturing"),
+        renderdoc_app_h.C_POINTER.withName("EndFrameCapture"),
+        renderdoc_app_h.C_POINTER.withName("TriggerMultiFrameCapture"),
+        renderdoc_app_h.C_POINTER.withName("SetCaptureFileComments"),
+        renderdoc_app_h.C_POINTER.withName("DiscardFrameCapture"),
+        renderdoc_app_h.C_POINTER.withName("ShowReplayUI"),
+        renderdoc_app_h.C_POINTER.withName("SetCaptureTitle")
+    ).withName("RENDERDOC_API_1_6_0");
+
+    /**
+     * The layout of this struct
+     */
+    public static final GroupLayout layout() {
+        return $LAYOUT;
+    }
+
+    private static final AddressLayout GetAPIVersion$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetAPIVersion"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetAPIVersion GetAPIVersion
+     * }
+     */
+    public static final AddressLayout GetAPIVersion$layout() {
+        return GetAPIVersion$LAYOUT;
+    }
+
+    private static final long GetAPIVersion$OFFSET = $LAYOUT.byteOffset(groupElement("GetAPIVersion"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetAPIVersion GetAPIVersion
+     * }
+     */
+    public static final long GetAPIVersion$offset() {
+        return GetAPIVersion$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetAPIVersion GetAPIVersion
+     * }
+     */
+    public static MemorySegment GetAPIVersion(MemorySegment struct) {
+        return struct.get(GetAPIVersion$LAYOUT, GetAPIVersion$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetAPIVersion GetAPIVersion
+     * }
+     */
+    public static void GetAPIVersion(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetAPIVersion$LAYOUT, GetAPIVersion$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SetCaptureOptionU32$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetCaptureOptionU32"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureOptionU32 SetCaptureOptionU32
+     * }
+     */
+    public static final AddressLayout SetCaptureOptionU32$layout() {
+        return SetCaptureOptionU32$LAYOUT;
+    }
+
+    private static final long SetCaptureOptionU32$OFFSET = $LAYOUT.byteOffset(groupElement("SetCaptureOptionU32"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureOptionU32 SetCaptureOptionU32
+     * }
+     */
+    public static final long SetCaptureOptionU32$offset() {
+        return SetCaptureOptionU32$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureOptionU32 SetCaptureOptionU32
+     * }
+     */
+    public static MemorySegment SetCaptureOptionU32(MemorySegment struct) {
+        return struct.get(SetCaptureOptionU32$LAYOUT, SetCaptureOptionU32$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureOptionU32 SetCaptureOptionU32
+     * }
+     */
+    public static void SetCaptureOptionU32(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetCaptureOptionU32$LAYOUT, SetCaptureOptionU32$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SetCaptureOptionF32$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetCaptureOptionF32"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureOptionF32 SetCaptureOptionF32
+     * }
+     */
+    public static final AddressLayout SetCaptureOptionF32$layout() {
+        return SetCaptureOptionF32$LAYOUT;
+    }
+
+    private static final long SetCaptureOptionF32$OFFSET = $LAYOUT.byteOffset(groupElement("SetCaptureOptionF32"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureOptionF32 SetCaptureOptionF32
+     * }
+     */
+    public static final long SetCaptureOptionF32$offset() {
+        return SetCaptureOptionF32$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureOptionF32 SetCaptureOptionF32
+     * }
+     */
+    public static MemorySegment SetCaptureOptionF32(MemorySegment struct) {
+        return struct.get(SetCaptureOptionF32$LAYOUT, SetCaptureOptionF32$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureOptionF32 SetCaptureOptionF32
+     * }
+     */
+    public static void SetCaptureOptionF32(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetCaptureOptionF32$LAYOUT, SetCaptureOptionF32$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GetCaptureOptionU32$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetCaptureOptionU32"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureOptionU32 GetCaptureOptionU32
+     * }
+     */
+    public static final AddressLayout GetCaptureOptionU32$layout() {
+        return GetCaptureOptionU32$LAYOUT;
+    }
+
+    private static final long GetCaptureOptionU32$OFFSET = $LAYOUT.byteOffset(groupElement("GetCaptureOptionU32"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureOptionU32 GetCaptureOptionU32
+     * }
+     */
+    public static final long GetCaptureOptionU32$offset() {
+        return GetCaptureOptionU32$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureOptionU32 GetCaptureOptionU32
+     * }
+     */
+    public static MemorySegment GetCaptureOptionU32(MemorySegment struct) {
+        return struct.get(GetCaptureOptionU32$LAYOUT, GetCaptureOptionU32$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureOptionU32 GetCaptureOptionU32
+     * }
+     */
+    public static void GetCaptureOptionU32(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetCaptureOptionU32$LAYOUT, GetCaptureOptionU32$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GetCaptureOptionF32$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetCaptureOptionF32"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureOptionF32 GetCaptureOptionF32
+     * }
+     */
+    public static final AddressLayout GetCaptureOptionF32$layout() {
+        return GetCaptureOptionF32$LAYOUT;
+    }
+
+    private static final long GetCaptureOptionF32$OFFSET = $LAYOUT.byteOffset(groupElement("GetCaptureOptionF32"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureOptionF32 GetCaptureOptionF32
+     * }
+     */
+    public static final long GetCaptureOptionF32$offset() {
+        return GetCaptureOptionF32$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureOptionF32 GetCaptureOptionF32
+     * }
+     */
+    public static MemorySegment GetCaptureOptionF32(MemorySegment struct) {
+        return struct.get(GetCaptureOptionF32$LAYOUT, GetCaptureOptionF32$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureOptionF32 GetCaptureOptionF32
+     * }
+     */
+    public static void GetCaptureOptionF32(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetCaptureOptionF32$LAYOUT, GetCaptureOptionF32$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SetFocusToggleKeys$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetFocusToggleKeys"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetFocusToggleKeys SetFocusToggleKeys
+     * }
+     */
+    public static final AddressLayout SetFocusToggleKeys$layout() {
+        return SetFocusToggleKeys$LAYOUT;
+    }
+
+    private static final long SetFocusToggleKeys$OFFSET = $LAYOUT.byteOffset(groupElement("SetFocusToggleKeys"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetFocusToggleKeys SetFocusToggleKeys
+     * }
+     */
+    public static final long SetFocusToggleKeys$offset() {
+        return SetFocusToggleKeys$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetFocusToggleKeys SetFocusToggleKeys
+     * }
+     */
+    public static MemorySegment SetFocusToggleKeys(MemorySegment struct) {
+        return struct.get(SetFocusToggleKeys$LAYOUT, SetFocusToggleKeys$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetFocusToggleKeys SetFocusToggleKeys
+     * }
+     */
+    public static void SetFocusToggleKeys(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetFocusToggleKeys$LAYOUT, SetFocusToggleKeys$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SetCaptureKeys$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetCaptureKeys"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureKeys SetCaptureKeys
+     * }
+     */
+    public static final AddressLayout SetCaptureKeys$layout() {
+        return SetCaptureKeys$LAYOUT;
+    }
+
+    private static final long SetCaptureKeys$OFFSET = $LAYOUT.byteOffset(groupElement("SetCaptureKeys"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureKeys SetCaptureKeys
+     * }
+     */
+    public static final long SetCaptureKeys$offset() {
+        return SetCaptureKeys$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureKeys SetCaptureKeys
+     * }
+     */
+    public static MemorySegment SetCaptureKeys(MemorySegment struct) {
+        return struct.get(SetCaptureKeys$LAYOUT, SetCaptureKeys$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureKeys SetCaptureKeys
+     * }
+     */
+    public static void SetCaptureKeys(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetCaptureKeys$LAYOUT, SetCaptureKeys$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GetOverlayBits$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetOverlayBits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetOverlayBits GetOverlayBits
+     * }
+     */
+    public static final AddressLayout GetOverlayBits$layout() {
+        return GetOverlayBits$LAYOUT;
+    }
+
+    private static final long GetOverlayBits$OFFSET = $LAYOUT.byteOffset(groupElement("GetOverlayBits"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetOverlayBits GetOverlayBits
+     * }
+     */
+    public static final long GetOverlayBits$offset() {
+        return GetOverlayBits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetOverlayBits GetOverlayBits
+     * }
+     */
+    public static MemorySegment GetOverlayBits(MemorySegment struct) {
+        return struct.get(GetOverlayBits$LAYOUT, GetOverlayBits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetOverlayBits GetOverlayBits
+     * }
+     */
+    public static void GetOverlayBits(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetOverlayBits$LAYOUT, GetOverlayBits$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout MaskOverlayBits$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("MaskOverlayBits"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_MaskOverlayBits MaskOverlayBits
+     * }
+     */
+    public static final AddressLayout MaskOverlayBits$layout() {
+        return MaskOverlayBits$LAYOUT;
+    }
+
+    private static final long MaskOverlayBits$OFFSET = $LAYOUT.byteOffset(groupElement("MaskOverlayBits"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_MaskOverlayBits MaskOverlayBits
+     * }
+     */
+    public static final long MaskOverlayBits$offset() {
+        return MaskOverlayBits$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_MaskOverlayBits MaskOverlayBits
+     * }
+     */
+    public static MemorySegment MaskOverlayBits(MemorySegment struct) {
+        return struct.get(MaskOverlayBits$LAYOUT, MaskOverlayBits$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_MaskOverlayBits MaskOverlayBits
+     * }
+     */
+    public static void MaskOverlayBits(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(MaskOverlayBits$LAYOUT, MaskOverlayBits$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout Shutdown$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$640:3"), groupElement("Shutdown"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_Shutdown Shutdown
+     * }
+     */
+    public static final AddressLayout Shutdown$layout() {
+        return Shutdown$LAYOUT;
+    }
+
+    private static final long Shutdown$OFFSET = $LAYOUT.byteOffset(groupElement("$anon$640:3"), groupElement("Shutdown"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_Shutdown Shutdown
+     * }
+     */
+    public static final long Shutdown$offset() {
+        return Shutdown$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_Shutdown Shutdown
+     * }
+     */
+    public static MemorySegment Shutdown(MemorySegment struct) {
+        return struct.get(Shutdown$LAYOUT, Shutdown$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_Shutdown Shutdown
+     * }
+     */
+    public static void Shutdown(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(Shutdown$LAYOUT, Shutdown$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout RemoveHooks$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$640:3"), groupElement("RemoveHooks"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_RemoveHooks RemoveHooks
+     * }
+     */
+    public static final AddressLayout RemoveHooks$layout() {
+        return RemoveHooks$LAYOUT;
+    }
+
+    private static final long RemoveHooks$OFFSET = $LAYOUT.byteOffset(groupElement("$anon$640:3"), groupElement("RemoveHooks"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_RemoveHooks RemoveHooks
+     * }
+     */
+    public static final long RemoveHooks$offset() {
+        return RemoveHooks$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_RemoveHooks RemoveHooks
+     * }
+     */
+    public static MemorySegment RemoveHooks(MemorySegment struct) {
+        return struct.get(RemoveHooks$LAYOUT, RemoveHooks$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_RemoveHooks RemoveHooks
+     * }
+     */
+    public static void RemoveHooks(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(RemoveHooks$LAYOUT, RemoveHooks$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout UnloadCrashHandler$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("UnloadCrashHandler"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_UnloadCrashHandler UnloadCrashHandler
+     * }
+     */
+    public static final AddressLayout UnloadCrashHandler$layout() {
+        return UnloadCrashHandler$LAYOUT;
+    }
+
+    private static final long UnloadCrashHandler$OFFSET = $LAYOUT.byteOffset(groupElement("UnloadCrashHandler"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_UnloadCrashHandler UnloadCrashHandler
+     * }
+     */
+    public static final long UnloadCrashHandler$offset() {
+        return UnloadCrashHandler$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_UnloadCrashHandler UnloadCrashHandler
+     * }
+     */
+    public static MemorySegment UnloadCrashHandler(MemorySegment struct) {
+        return struct.get(UnloadCrashHandler$LAYOUT, UnloadCrashHandler$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_UnloadCrashHandler UnloadCrashHandler
+     * }
+     */
+    public static void UnloadCrashHandler(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(UnloadCrashHandler$LAYOUT, UnloadCrashHandler$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SetLogFilePathTemplate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$649:3"), groupElement("SetLogFilePathTemplate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetLogFilePathTemplate SetLogFilePathTemplate
+     * }
+     */
+    public static final AddressLayout SetLogFilePathTemplate$layout() {
+        return SetLogFilePathTemplate$LAYOUT;
+    }
+
+    private static final long SetLogFilePathTemplate$OFFSET = $LAYOUT.byteOffset(groupElement("$anon$649:3"), groupElement("SetLogFilePathTemplate"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetLogFilePathTemplate SetLogFilePathTemplate
+     * }
+     */
+    public static final long SetLogFilePathTemplate$offset() {
+        return SetLogFilePathTemplate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetLogFilePathTemplate SetLogFilePathTemplate
+     * }
+     */
+    public static MemorySegment SetLogFilePathTemplate(MemorySegment struct) {
+        return struct.get(SetLogFilePathTemplate$LAYOUT, SetLogFilePathTemplate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetLogFilePathTemplate SetLogFilePathTemplate
+     * }
+     */
+    public static void SetLogFilePathTemplate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetLogFilePathTemplate$LAYOUT, SetLogFilePathTemplate$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SetCaptureFilePathTemplate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$649:3"), groupElement("SetCaptureFilePathTemplate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureFilePathTemplate SetCaptureFilePathTemplate
+     * }
+     */
+    public static final AddressLayout SetCaptureFilePathTemplate$layout() {
+        return SetCaptureFilePathTemplate$LAYOUT;
+    }
+
+    private static final long SetCaptureFilePathTemplate$OFFSET = $LAYOUT.byteOffset(groupElement("$anon$649:3"), groupElement("SetCaptureFilePathTemplate"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureFilePathTemplate SetCaptureFilePathTemplate
+     * }
+     */
+    public static final long SetCaptureFilePathTemplate$offset() {
+        return SetCaptureFilePathTemplate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureFilePathTemplate SetCaptureFilePathTemplate
+     * }
+     */
+    public static MemorySegment SetCaptureFilePathTemplate(MemorySegment struct) {
+        return struct.get(SetCaptureFilePathTemplate$LAYOUT, SetCaptureFilePathTemplate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureFilePathTemplate SetCaptureFilePathTemplate
+     * }
+     */
+    public static void SetCaptureFilePathTemplate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetCaptureFilePathTemplate$LAYOUT, SetCaptureFilePathTemplate$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GetLogFilePathTemplate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$656:3"), groupElement("GetLogFilePathTemplate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetLogFilePathTemplate GetLogFilePathTemplate
+     * }
+     */
+    public static final AddressLayout GetLogFilePathTemplate$layout() {
+        return GetLogFilePathTemplate$LAYOUT;
+    }
+
+    private static final long GetLogFilePathTemplate$OFFSET = $LAYOUT.byteOffset(groupElement("$anon$656:3"), groupElement("GetLogFilePathTemplate"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetLogFilePathTemplate GetLogFilePathTemplate
+     * }
+     */
+    public static final long GetLogFilePathTemplate$offset() {
+        return GetLogFilePathTemplate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetLogFilePathTemplate GetLogFilePathTemplate
+     * }
+     */
+    public static MemorySegment GetLogFilePathTemplate(MemorySegment struct) {
+        return struct.get(GetLogFilePathTemplate$LAYOUT, GetLogFilePathTemplate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetLogFilePathTemplate GetLogFilePathTemplate
+     * }
+     */
+    public static void GetLogFilePathTemplate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetLogFilePathTemplate$LAYOUT, GetLogFilePathTemplate$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GetCaptureFilePathTemplate$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$656:3"), groupElement("GetCaptureFilePathTemplate"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureFilePathTemplate GetCaptureFilePathTemplate
+     * }
+     */
+    public static final AddressLayout GetCaptureFilePathTemplate$layout() {
+        return GetCaptureFilePathTemplate$LAYOUT;
+    }
+
+    private static final long GetCaptureFilePathTemplate$OFFSET = $LAYOUT.byteOffset(groupElement("$anon$656:3"), groupElement("GetCaptureFilePathTemplate"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureFilePathTemplate GetCaptureFilePathTemplate
+     * }
+     */
+    public static final long GetCaptureFilePathTemplate$offset() {
+        return GetCaptureFilePathTemplate$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureFilePathTemplate GetCaptureFilePathTemplate
+     * }
+     */
+    public static MemorySegment GetCaptureFilePathTemplate(MemorySegment struct) {
+        return struct.get(GetCaptureFilePathTemplate$LAYOUT, GetCaptureFilePathTemplate$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCaptureFilePathTemplate GetCaptureFilePathTemplate
+     * }
+     */
+    public static void GetCaptureFilePathTemplate(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetCaptureFilePathTemplate$LAYOUT, GetCaptureFilePathTemplate$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GetNumCaptures$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetNumCaptures"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetNumCaptures GetNumCaptures
+     * }
+     */
+    public static final AddressLayout GetNumCaptures$layout() {
+        return GetNumCaptures$LAYOUT;
+    }
+
+    private static final long GetNumCaptures$OFFSET = $LAYOUT.byteOffset(groupElement("GetNumCaptures"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetNumCaptures GetNumCaptures
+     * }
+     */
+    public static final long GetNumCaptures$offset() {
+        return GetNumCaptures$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetNumCaptures GetNumCaptures
+     * }
+     */
+    public static MemorySegment GetNumCaptures(MemorySegment struct) {
+        return struct.get(GetNumCaptures$LAYOUT, GetNumCaptures$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetNumCaptures GetNumCaptures
+     * }
+     */
+    public static void GetNumCaptures(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetNumCaptures$LAYOUT, GetNumCaptures$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout GetCapture$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("GetCapture"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCapture GetCapture
+     * }
+     */
+    public static final AddressLayout GetCapture$layout() {
+        return GetCapture$LAYOUT;
+    }
+
+    private static final long GetCapture$OFFSET = $LAYOUT.byteOffset(groupElement("GetCapture"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCapture GetCapture
+     * }
+     */
+    public static final long GetCapture$offset() {
+        return GetCapture$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCapture GetCapture
+     * }
+     */
+    public static MemorySegment GetCapture(MemorySegment struct) {
+        return struct.get(GetCapture$LAYOUT, GetCapture$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_GetCapture GetCapture
+     * }
+     */
+    public static void GetCapture(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(GetCapture$LAYOUT, GetCapture$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout TriggerCapture$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("TriggerCapture"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_TriggerCapture TriggerCapture
+     * }
+     */
+    public static final AddressLayout TriggerCapture$layout() {
+        return TriggerCapture$LAYOUT;
+    }
+
+    private static final long TriggerCapture$OFFSET = $LAYOUT.byteOffset(groupElement("TriggerCapture"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_TriggerCapture TriggerCapture
+     * }
+     */
+    public static final long TriggerCapture$offset() {
+        return TriggerCapture$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_TriggerCapture TriggerCapture
+     * }
+     */
+    public static MemorySegment TriggerCapture(MemorySegment struct) {
+        return struct.get(TriggerCapture$LAYOUT, TriggerCapture$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_TriggerCapture TriggerCapture
+     * }
+     */
+    public static void TriggerCapture(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(TriggerCapture$LAYOUT, TriggerCapture$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout IsRemoteAccessConnected$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$671:3"), groupElement("IsRemoteAccessConnected"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsRemoteAccessConnected IsRemoteAccessConnected
+     * }
+     */
+    public static final AddressLayout IsRemoteAccessConnected$layout() {
+        return IsRemoteAccessConnected$LAYOUT;
+    }
+
+    private static final long IsRemoteAccessConnected$OFFSET = $LAYOUT.byteOffset(groupElement("$anon$671:3"), groupElement("IsRemoteAccessConnected"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsRemoteAccessConnected IsRemoteAccessConnected
+     * }
+     */
+    public static final long IsRemoteAccessConnected$offset() {
+        return IsRemoteAccessConnected$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsRemoteAccessConnected IsRemoteAccessConnected
+     * }
+     */
+    public static MemorySegment IsRemoteAccessConnected(MemorySegment struct) {
+        return struct.get(IsRemoteAccessConnected$LAYOUT, IsRemoteAccessConnected$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsRemoteAccessConnected IsRemoteAccessConnected
+     * }
+     */
+    public static void IsRemoteAccessConnected(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(IsRemoteAccessConnected$LAYOUT, IsRemoteAccessConnected$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout IsTargetControlConnected$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("$anon$671:3"), groupElement("IsTargetControlConnected"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsTargetControlConnected IsTargetControlConnected
+     * }
+     */
+    public static final AddressLayout IsTargetControlConnected$layout() {
+        return IsTargetControlConnected$LAYOUT;
+    }
+
+    private static final long IsTargetControlConnected$OFFSET = $LAYOUT.byteOffset(groupElement("$anon$671:3"), groupElement("IsTargetControlConnected"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsTargetControlConnected IsTargetControlConnected
+     * }
+     */
+    public static final long IsTargetControlConnected$offset() {
+        return IsTargetControlConnected$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsTargetControlConnected IsTargetControlConnected
+     * }
+     */
+    public static MemorySegment IsTargetControlConnected(MemorySegment struct) {
+        return struct.get(IsTargetControlConnected$LAYOUT, IsTargetControlConnected$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsTargetControlConnected IsTargetControlConnected
+     * }
+     */
+    public static void IsTargetControlConnected(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(IsTargetControlConnected$LAYOUT, IsTargetControlConnected$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout LaunchReplayUI$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("LaunchReplayUI"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_LaunchReplayUI LaunchReplayUI
+     * }
+     */
+    public static final AddressLayout LaunchReplayUI$layout() {
+        return LaunchReplayUI$LAYOUT;
+    }
+
+    private static final long LaunchReplayUI$OFFSET = $LAYOUT.byteOffset(groupElement("LaunchReplayUI"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_LaunchReplayUI LaunchReplayUI
+     * }
+     */
+    public static final long LaunchReplayUI$offset() {
+        return LaunchReplayUI$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_LaunchReplayUI LaunchReplayUI
+     * }
+     */
+    public static MemorySegment LaunchReplayUI(MemorySegment struct) {
+        return struct.get(LaunchReplayUI$LAYOUT, LaunchReplayUI$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_LaunchReplayUI LaunchReplayUI
+     * }
+     */
+    public static void LaunchReplayUI(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(LaunchReplayUI$LAYOUT, LaunchReplayUI$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SetActiveWindow$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetActiveWindow"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetActiveWindow SetActiveWindow
+     * }
+     */
+    public static final AddressLayout SetActiveWindow$layout() {
+        return SetActiveWindow$LAYOUT;
+    }
+
+    private static final long SetActiveWindow$OFFSET = $LAYOUT.byteOffset(groupElement("SetActiveWindow"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetActiveWindow SetActiveWindow
+     * }
+     */
+    public static final long SetActiveWindow$offset() {
+        return SetActiveWindow$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetActiveWindow SetActiveWindow
+     * }
+     */
+    public static MemorySegment SetActiveWindow(MemorySegment struct) {
+        return struct.get(SetActiveWindow$LAYOUT, SetActiveWindow$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetActiveWindow SetActiveWindow
+     * }
+     */
+    public static void SetActiveWindow(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetActiveWindow$LAYOUT, SetActiveWindow$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout StartFrameCapture$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("StartFrameCapture"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_StartFrameCapture StartFrameCapture
+     * }
+     */
+    public static final AddressLayout StartFrameCapture$layout() {
+        return StartFrameCapture$LAYOUT;
+    }
+
+    private static final long StartFrameCapture$OFFSET = $LAYOUT.byteOffset(groupElement("StartFrameCapture"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_StartFrameCapture StartFrameCapture
+     * }
+     */
+    public static final long StartFrameCapture$offset() {
+        return StartFrameCapture$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_StartFrameCapture StartFrameCapture
+     * }
+     */
+    public static MemorySegment StartFrameCapture(MemorySegment struct) {
+        return struct.get(StartFrameCapture$LAYOUT, StartFrameCapture$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_StartFrameCapture StartFrameCapture
+     * }
+     */
+    public static void StartFrameCapture(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(StartFrameCapture$LAYOUT, StartFrameCapture$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout IsFrameCapturing$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("IsFrameCapturing"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsFrameCapturing IsFrameCapturing
+     * }
+     */
+    public static final AddressLayout IsFrameCapturing$layout() {
+        return IsFrameCapturing$LAYOUT;
+    }
+
+    private static final long IsFrameCapturing$OFFSET = $LAYOUT.byteOffset(groupElement("IsFrameCapturing"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsFrameCapturing IsFrameCapturing
+     * }
+     */
+    public static final long IsFrameCapturing$offset() {
+        return IsFrameCapturing$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsFrameCapturing IsFrameCapturing
+     * }
+     */
+    public static MemorySegment IsFrameCapturing(MemorySegment struct) {
+        return struct.get(IsFrameCapturing$LAYOUT, IsFrameCapturing$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_IsFrameCapturing IsFrameCapturing
+     * }
+     */
+    public static void IsFrameCapturing(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(IsFrameCapturing$LAYOUT, IsFrameCapturing$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout EndFrameCapture$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("EndFrameCapture"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_EndFrameCapture EndFrameCapture
+     * }
+     */
+    public static final AddressLayout EndFrameCapture$layout() {
+        return EndFrameCapture$LAYOUT;
+    }
+
+    private static final long EndFrameCapture$OFFSET = $LAYOUT.byteOffset(groupElement("EndFrameCapture"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_EndFrameCapture EndFrameCapture
+     * }
+     */
+    public static final long EndFrameCapture$offset() {
+        return EndFrameCapture$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_EndFrameCapture EndFrameCapture
+     * }
+     */
+    public static MemorySegment EndFrameCapture(MemorySegment struct) {
+        return struct.get(EndFrameCapture$LAYOUT, EndFrameCapture$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_EndFrameCapture EndFrameCapture
+     * }
+     */
+    public static void EndFrameCapture(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(EndFrameCapture$LAYOUT, EndFrameCapture$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout TriggerMultiFrameCapture$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("TriggerMultiFrameCapture"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_TriggerMultiFrameCapture TriggerMultiFrameCapture
+     * }
+     */
+    public static final AddressLayout TriggerMultiFrameCapture$layout() {
+        return TriggerMultiFrameCapture$LAYOUT;
+    }
+
+    private static final long TriggerMultiFrameCapture$OFFSET = $LAYOUT.byteOffset(groupElement("TriggerMultiFrameCapture"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_TriggerMultiFrameCapture TriggerMultiFrameCapture
+     * }
+     */
+    public static final long TriggerMultiFrameCapture$offset() {
+        return TriggerMultiFrameCapture$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_TriggerMultiFrameCapture TriggerMultiFrameCapture
+     * }
+     */
+    public static MemorySegment TriggerMultiFrameCapture(MemorySegment struct) {
+        return struct.get(TriggerMultiFrameCapture$LAYOUT, TriggerMultiFrameCapture$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_TriggerMultiFrameCapture TriggerMultiFrameCapture
+     * }
+     */
+    public static void TriggerMultiFrameCapture(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(TriggerMultiFrameCapture$LAYOUT, TriggerMultiFrameCapture$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SetCaptureFileComments$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetCaptureFileComments"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureFileComments SetCaptureFileComments
+     * }
+     */
+    public static final AddressLayout SetCaptureFileComments$layout() {
+        return SetCaptureFileComments$LAYOUT;
+    }
+
+    private static final long SetCaptureFileComments$OFFSET = $LAYOUT.byteOffset(groupElement("SetCaptureFileComments"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureFileComments SetCaptureFileComments
+     * }
+     */
+    public static final long SetCaptureFileComments$offset() {
+        return SetCaptureFileComments$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureFileComments SetCaptureFileComments
+     * }
+     */
+    public static MemorySegment SetCaptureFileComments(MemorySegment struct) {
+        return struct.get(SetCaptureFileComments$LAYOUT, SetCaptureFileComments$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureFileComments SetCaptureFileComments
+     * }
+     */
+    public static void SetCaptureFileComments(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetCaptureFileComments$LAYOUT, SetCaptureFileComments$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout DiscardFrameCapture$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("DiscardFrameCapture"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_DiscardFrameCapture DiscardFrameCapture
+     * }
+     */
+    public static final AddressLayout DiscardFrameCapture$layout() {
+        return DiscardFrameCapture$LAYOUT;
+    }
+
+    private static final long DiscardFrameCapture$OFFSET = $LAYOUT.byteOffset(groupElement("DiscardFrameCapture"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_DiscardFrameCapture DiscardFrameCapture
+     * }
+     */
+    public static final long DiscardFrameCapture$offset() {
+        return DiscardFrameCapture$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_DiscardFrameCapture DiscardFrameCapture
+     * }
+     */
+    public static MemorySegment DiscardFrameCapture(MemorySegment struct) {
+        return struct.get(DiscardFrameCapture$LAYOUT, DiscardFrameCapture$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_DiscardFrameCapture DiscardFrameCapture
+     * }
+     */
+    public static void DiscardFrameCapture(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(DiscardFrameCapture$LAYOUT, DiscardFrameCapture$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout ShowReplayUI$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("ShowReplayUI"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_ShowReplayUI ShowReplayUI
+     * }
+     */
+    public static final AddressLayout ShowReplayUI$layout() {
+        return ShowReplayUI$LAYOUT;
+    }
+
+    private static final long ShowReplayUI$OFFSET = $LAYOUT.byteOffset(groupElement("ShowReplayUI"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_ShowReplayUI ShowReplayUI
+     * }
+     */
+    public static final long ShowReplayUI$offset() {
+        return ShowReplayUI$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_ShowReplayUI ShowReplayUI
+     * }
+     */
+    public static MemorySegment ShowReplayUI(MemorySegment struct) {
+        return struct.get(ShowReplayUI$LAYOUT, ShowReplayUI$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_ShowReplayUI ShowReplayUI
+     * }
+     */
+    public static void ShowReplayUI(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(ShowReplayUI$LAYOUT, ShowReplayUI$OFFSET, fieldValue);
+    }
+
+    private static final AddressLayout SetCaptureTitle$LAYOUT = (AddressLayout)$LAYOUT.select(groupElement("SetCaptureTitle"));
+
+    /**
+     * Layout for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureTitle SetCaptureTitle
+     * }
+     */
+    public static final AddressLayout SetCaptureTitle$layout() {
+        return SetCaptureTitle$LAYOUT;
+    }
+
+    private static final long SetCaptureTitle$OFFSET = $LAYOUT.byteOffset(groupElement("SetCaptureTitle"));
+
+    /**
+     * Offset for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureTitle SetCaptureTitle
+     * }
+     */
+    public static final long SetCaptureTitle$offset() {
+        return SetCaptureTitle$OFFSET;
+    }
+
+    /**
+     * Getter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureTitle SetCaptureTitle
+     * }
+     */
+    public static MemorySegment SetCaptureTitle(MemorySegment struct) {
+        return struct.get(SetCaptureTitle$LAYOUT, SetCaptureTitle$OFFSET);
+    }
+
+    /**
+     * Setter for field:
+     * {@snippet lang=c :
+     * pRENDERDOC_SetCaptureTitle SetCaptureTitle
+     * }
+     */
+    public static void SetCaptureTitle(MemorySegment struct, MemorySegment fieldValue) {
+        struct.set(SetCaptureTitle$LAYOUT, SetCaptureTitle$OFFSET, fieldValue);
+    }
+
+    /**
+     * Obtains a slice of {@code arrayParam} which selects the array element at {@code index}.
+     * The returned segment has address {@code arrayParam.address() + index * layout().byteSize()}
+     */
+    public static MemorySegment asSlice(MemorySegment array, long index) {
+        return array.asSlice(layout().byteSize() * index);
+    }
+
+    /**
+     * The size (in bytes) of this struct
+     */
+    public static long sizeof() { return layout().byteSize(); }
+
+    /**
+     * Allocate a segment of size {@code layout().byteSize()} using {@code allocator}
+     */
+    public static MemorySegment allocate(SegmentAllocator allocator) {
+        return allocator.allocate(layout());
+    }
+
+    /**
+     * Allocate an array of size {@code elementCount} using {@code allocator}.
+     * The returned segment has size {@code elementCount * layout().byteSize()}.
+     */
+    public static MemorySegment allocateArray(long elementCount, SegmentAllocator allocator) {
+        return allocator.allocate(MemoryLayout.sequenceLayout(elementCount, layout()));
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, Arena arena, Consumer<MemorySegment> cleanup) {
+        return reinterpret(addr, 1, arena, cleanup);
+    }
+
+    /**
+     * Reinterprets {@code addr} using target {@code arena} and {@code cleanupAction} (if any).
+     * The returned segment has size {@code elementCount * layout().byteSize()}
+     */
+    public static MemorySegment reinterpret(MemorySegment addr, long elementCount, Arena arena, Consumer<MemorySegment> cleanup) {
+        return addr.reinterpret(layout().byteSize() * elementCount, arena, cleanup);
+    }
+}
 

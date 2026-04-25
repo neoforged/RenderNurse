@@ -2,32 +2,70 @@
 
 package net.renderdoc.api;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
 /**
- * {@snippet :
- * int (*pRENDERDOC_SetCaptureOptionF32)(enum RENDERDOC_CaptureOption opt,float val);
+ * {@snippet lang=c :
+ * typedef int (*pRENDERDOC_SetCaptureOptionF32)(RENDERDOC_CaptureOption, float)
  * }
  */
-public interface pRENDERDOC_SetCaptureOptionF32 {
+public final class pRENDERDOC_SetCaptureOptionF32 {
 
-    int apply(int opt, float val);
-    static MemorySegment allocate(pRENDERDOC_SetCaptureOptionF32 fi, Arena scope) {
-        return RuntimeHelper.upcallStub(constants$0.const$5, fi, constants$0.const$4, scope);
+    private pRENDERDOC_SetCaptureOptionF32() {
+        // Should not be called directly
     }
-    static pRENDERDOC_SetCaptureOptionF32 ofAddress(MemorySegment addr, Arena arena) {
-        MemorySegment symbol = addr.reinterpret(arena, null);
-        return (int _opt, float _val) -> {
-            try {
-                return (int)constants$1.const$0.invokeExact(symbol, _opt, _val);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int opt, float val);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        renderdoc_app_h.C_INT,
+        renderdoc_app_h.C_INT,
+        renderdoc_app_h.C_FLOAT
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = renderdoc_app_h.upcallHandle(pRENDERDOC_SetCaptureOptionF32.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(pRENDERDOC_SetCaptureOptionF32.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr, int opt, float val) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, opt, val);
+        } catch (Error | RuntimeException ex) {
+            throw ex;
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

@@ -26,7 +26,7 @@ changelog {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(25)
     }
     withSourcesJar()
     withJavadocJar()
@@ -51,17 +51,6 @@ jar {
                 'Premain-Class': 'net.neoforged.doctor.RenderDocLaunchAgent',
                 'Agent-Class': 'net.neoforged.doctor.RenderDocLaunchAgent'
         )
-    }
-}
-
-tasks.withType(JavaCompile).configureEach {
-    options.compilerArgs.add("--enable-preview")
-}
-
-tasks.withType(Javadoc).configureEach {
-    options {
-        addBooleanOption('-enable-preview', true)
-        addStringOption('-source', '21')
     }
 }
 

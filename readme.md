@@ -1,6 +1,8 @@
 ### RenderNurse
 > A simple bootstrap utility to start renderdoc in a java application.
 ---
+RenderNurse requires **Java 25** to work. 
+
 ### Usage
 Add the published artifact:
 ```
@@ -28,8 +30,6 @@ This is the path to the renderdoc library that should be loaded by the JVM.
 Besides the system properties, you can also set the following JVM arguments:
 ```
 -javaagent:/path/to/RenderNurse.jar
---enable-preview
---enable-native-access=ALL-UNNAMED
 ```
 
 #### MacOS

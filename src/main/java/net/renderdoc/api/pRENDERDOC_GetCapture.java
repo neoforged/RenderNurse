@@ -2,32 +2,72 @@
 
 package net.renderdoc.api;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
 /**
- * {@snippet :
- * unsigned int (*pRENDERDOC_GetCapture)(unsigned int idx,char* filename,unsigned int* pathlength,unsigned long* timestamp);
+ * {@snippet lang=c :
+ * typedef uint32_t (*pRENDERDOC_GetCapture)(uint32_t, char *, uint32_t *, uint64_t *)
  * }
  */
-public interface pRENDERDOC_GetCapture {
+public final class pRENDERDOC_GetCapture {
 
-    int apply(int idx, java.lang.foreign.MemorySegment filename, java.lang.foreign.MemorySegment pathlength, java.lang.foreign.MemorySegment timestamp);
-    static MemorySegment allocate(pRENDERDOC_GetCapture fi, Arena scope) {
-        return RuntimeHelper.upcallStub(constants$6.const$2, fi, constants$6.const$1, scope);
+    private pRENDERDOC_GetCapture() {
+        // Should not be called directly
     }
-    static pRENDERDOC_GetCapture ofAddress(MemorySegment addr, Arena arena) {
-        MemorySegment symbol = addr.reinterpret(arena, null);
-        return (int _idx, java.lang.foreign.MemorySegment _filename, java.lang.foreign.MemorySegment _pathlength, java.lang.foreign.MemorySegment _timestamp) -> {
-            try {
-                return (int)constants$6.const$3.invokeExact(symbol, _idx, _filename, _pathlength, _timestamp);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int idx, MemorySegment filename, MemorySegment pathlength, MemorySegment timestamp);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        renderdoc_app_h.C_INT,
+        renderdoc_app_h.C_INT,
+        renderdoc_app_h.C_POINTER,
+        renderdoc_app_h.C_POINTER,
+        renderdoc_app_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = renderdoc_app_h.upcallHandle(pRENDERDOC_GetCapture.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(pRENDERDOC_GetCapture.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr, int idx, MemorySegment filename, MemorySegment pathlength, MemorySegment timestamp) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, idx, filename, pathlength, timestamp);
+        } catch (Error | RuntimeException ex) {
+            throw ex;
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

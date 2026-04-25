@@ -2,32 +2,70 @@
 
 package net.renderdoc.api;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
 /**
- * {@snippet :
- * unsigned int (*pRENDERDOC_LaunchReplayUI)(unsigned int connectTargetControl,char* cmdline);
+ * {@snippet lang=c :
+ * typedef uint32_t (*pRENDERDOC_LaunchReplayUI)(uint32_t, const char *)
  * }
  */
-public interface pRENDERDOC_LaunchReplayUI {
+public final class pRENDERDOC_LaunchReplayUI {
 
-    int apply(int connectTargetControl, java.lang.foreign.MemorySegment cmdline);
-    static MemorySegment allocate(pRENDERDOC_LaunchReplayUI fi, Arena scope) {
-        return RuntimeHelper.upcallStub(constants$7.const$4, fi, constants$7.const$3, scope);
+    private pRENDERDOC_LaunchReplayUI() {
+        // Should not be called directly
     }
-    static pRENDERDOC_LaunchReplayUI ofAddress(MemorySegment addr, Arena arena) {
-        MemorySegment symbol = addr.reinterpret(arena, null);
-        return (int _connectTargetControl, java.lang.foreign.MemorySegment _cmdline) -> {
-            try {
-                return (int)constants$7.const$5.invokeExact(symbol, _connectTargetControl, _cmdline);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        int apply(int connectTargetControl, MemorySegment cmdline);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.of(
+        renderdoc_app_h.C_INT,
+        renderdoc_app_h.C_INT,
+        renderdoc_app_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = renderdoc_app_h.upcallHandle(pRENDERDOC_LaunchReplayUI.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(pRENDERDOC_LaunchReplayUI.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static int invoke(MemorySegment funcPtr, int connectTargetControl, MemorySegment cmdline) {
+        try {
+            return (int) DOWN$MH.invokeExact(funcPtr, connectTargetControl, cmdline);
+        } catch (Error | RuntimeException ex) {
+            throw ex;
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 

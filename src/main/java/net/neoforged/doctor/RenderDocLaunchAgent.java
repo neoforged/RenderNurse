@@ -7,13 +7,18 @@ package net.neoforged.doctor;
 
 import net.renderdoc.api.RENDERDOC_API_1_6_0;
 import net.renderdoc.api.pRENDERDOC_GetAPI;
-import net.renderdoc.api.renderdoc_app_h;
+import net.renderdoc.api.pRENDERDOC_LaunchReplayUI;
 
-import java.lang.foreign.*;
+import java.lang.foreign.Arena;
+import java.lang.foreign.MemorySegment;
+import java.lang.foreign.SymbolLookup;
+import java.lang.foreign.ValueLayout;
 import java.lang.instrument.Instrumentation;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import static net.renderdoc.api.renderdoc_app_h.eRENDERDOC_API_Version_1_6_0;
 
 public class RenderDocLaunchAgent {
 
@@ -72,28 +77,26 @@ public class RenderDocLaunchAgent {
         System.out.printf("Preloaded the RenderDoc library from: %s%n", libraryPath);
     }
 
-    @SuppressWarnings("CallToPrintStackTrace")
     private static void startRenderDoc() {
         try(Arena arena = Arena.ofConfined()) {
-            MemorySegment pointerToApi = arena.allocate(ValueLayout.ADDRESS);
-
             SymbolLookup lookup = SymbolLookup.loaderLookup();
-            MemorySegment apiRetrievalFunctionAddress = lookup.find("RENDERDOC_GetAPI").get();
 
-            final pRENDERDOC_GetAPI getApiFunction = pRENDERDOC_GetAPI.ofAddress(apiRetrievalFunctionAddress, arena);
-
-            //Fill the API pointer
-            final int result = getApiFunction.apply(renderdoc_app_h.eRENDERDOC_API_Version_1_6_0(), pointerToApi);
+            // Get the API pointer
+            MemorySegment GetAPI_addr = lookup.findOrThrow("RENDERDOC_GetAPI");
+            MemorySegment api_1_6_0_addr = arena.allocate(ValueLayout.ADDRESS);
+            final int result = pRENDERDOC_GetAPI.invoke(GetAPI_addr, eRENDERDOC_API_Version_1_6_0(), api_1_6_0_addr);
             if (result != 1) {
-                System.err.printf("Failed to load the 1.6 version of RenderDoc. Please update RenderDoc.%n");
+                System.err.println("Failed to load the 1.6 version of RenderDoc. Please update RenderDoc.");
                 System.exit(150);
             }
+            MemorySegment api_1_6_0 = api_1_6_0_addr.get(ValueLayout.ADDRESS, 0);
+            api_1_6_0 = RENDERDOC_API_1_6_0.reinterpret(api_1_6_0, arena, null);
 
-            final MemorySegment api = RENDERDOC_API_1_6_0.ofAddress(pointerToApi.get(ValueLayout.ADDRESS, 0), arena);
-            final int replayUiPid = RENDERDOC_API_1_6_0.LaunchReplayUI(api, arena).apply(1, MemorySegment.NULL);
-
+            // Launch the replay UI
+            MemorySegment LaunchReplayUI_addr = RENDERDOC_API_1_6_0.LaunchReplayUI(api_1_6_0);
+            final int replayUiPid = pRENDERDOC_LaunchReplayUI.invoke(LaunchReplayUI_addr, 1, MemorySegment.NULL);
             if (replayUiPid == 0) {
-                System.err.printf("Failed to start RenderDoc replay UI.%n");
+                System.err.println("Failed to start RenderDoc replay UI.");
                 System.exit(151);
             }
         }

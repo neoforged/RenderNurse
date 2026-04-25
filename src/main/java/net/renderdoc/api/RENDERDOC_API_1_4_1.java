@@ -2,20 +2,25 @@
 
 package net.renderdoc.api;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
 /**
- * {@snippet :
- * typedef struct RENDERDOC_API_1_6_0 RENDERDOC_API_1_4_1;
+ * {@snippet lang=c :
+ * typedef RENDERDOC_API_1_6_0 RENDERDOC_API_1_4_1
  * }
  */
-public final class RENDERDOC_API_1_4_1 extends RENDERDOC_API_1_6_0 {
+public class RENDERDOC_API_1_4_1 extends RENDERDOC_API_1_6_0 {
 
-    // Suppresses default constructor, ensuring non-instantiability.
-    private RENDERDOC_API_1_4_1() {}
+    RENDERDOC_API_1_4_1() {
+        // Should not be called directly
+    }
 }
-
 

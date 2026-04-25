@@ -2,32 +2,68 @@
 
 package net.renderdoc.api;
 
-import java.lang.invoke.MethodHandle;
-import java.lang.invoke.VarHandle;
-import java.nio.ByteOrder;
+import java.lang.invoke.*;
 import java.lang.foreign.*;
+import java.nio.ByteOrder;
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
+
 import static java.lang.foreign.ValueLayout.*;
+import static java.lang.foreign.MemoryLayout.PathElement.*;
+
 /**
- * {@snippet :
- * void (*pRENDERDOC_SetCaptureTitle)(char* title);
+ * {@snippet lang=c :
+ * typedef void (*pRENDERDOC_SetCaptureTitle)(const char *)
  * }
  */
-public interface pRENDERDOC_SetCaptureTitle {
+public final class pRENDERDOC_SetCaptureTitle {
 
-    void apply(java.lang.foreign.MemorySegment title);
-    static MemorySegment allocate(pRENDERDOC_SetCaptureTitle fi, Arena scope) {
-        return RuntimeHelper.upcallStub(constants$10.const$3, fi, constants$4.const$4, scope);
+    private pRENDERDOC_SetCaptureTitle() {
+        // Should not be called directly
     }
-    static pRENDERDOC_SetCaptureTitle ofAddress(MemorySegment addr, Arena arena) {
-        MemorySegment symbol = addr.reinterpret(arena, null);
-        return (java.lang.foreign.MemorySegment _title) -> {
-            try {
-                constants$5.const$0.invokeExact(symbol, _title);
-            } catch (Throwable ex$) {
-                throw new AssertionError("should not reach here", ex$);
-            }
-        };
+
+    /**
+     * The function pointer signature, expressed as a functional interface
+     */
+    public interface Function {
+        void apply(MemorySegment title);
+    }
+
+    private static final FunctionDescriptor $DESC = FunctionDescriptor.ofVoid(
+        renderdoc_app_h.C_POINTER
+    );
+
+    /**
+     * The descriptor of this function pointer
+     */
+    public static FunctionDescriptor descriptor() {
+        return $DESC;
+    }
+
+    private static final MethodHandle UP$MH = renderdoc_app_h.upcallHandle(pRENDERDOC_SetCaptureTitle.Function.class, "apply", $DESC);
+
+    /**
+     * Allocates a new upcall stub, whose implementation is defined by {@code fi}.
+     * The lifetime of the returned segment is managed by {@code arena}
+     */
+    public static MemorySegment allocate(pRENDERDOC_SetCaptureTitle.Function fi, Arena arena) {
+        return Linker.nativeLinker().upcallStub(UP$MH.bindTo(fi), $DESC, arena);
+    }
+
+    private static final MethodHandle DOWN$MH = Linker.nativeLinker().downcallHandle($DESC);
+
+    /**
+     * Invoke the upcall stub {@code funcPtr}, with given parameters
+     */
+    public static void invoke(MemorySegment funcPtr, MemorySegment title) {
+        try {
+             DOWN$MH.invokeExact(funcPtr, title);
+        } catch (Error | RuntimeException ex) {
+            throw ex;
+        } catch (Throwable ex$) {
+            throw new AssertionError("should not reach here", ex$);
+        }
     }
 }
-
 
